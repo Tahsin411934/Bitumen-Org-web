@@ -1,5 +1,10 @@
 <x-app-layout>
     <h1 class="text-2xl font-bold text-center my-6">Product Insert</h1>
+    @if (session('success'))
+    <div class="text-center p-4 bg-green-100 font-semibold text-green-700">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 
     <form action="{{ route('products.store') }}" method="POST" class="max-w-5xl mx-auto bg-white shadow-md rounded p-6">
         @csrf

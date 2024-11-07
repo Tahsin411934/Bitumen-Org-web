@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,7 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('products', ProductController::class);
+Route::resource('suppliers', SupplierController::class);
 
 
 Route::middleware('auth')->group(function () {

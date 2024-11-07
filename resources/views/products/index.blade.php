@@ -1,6 +1,10 @@
 <x-app-layout>
     <h1 class="text-3xl font-bold text-center my-8 text-blue-600">Product List</h1>
-
+    @if (session('success'))
+    <div class="text-center p-4 bg-green-100 font-semibold text-green-700">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
     <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-8">
         @if($products->isEmpty())
             <p class="text-center text-gray-600">No products found.</p>
