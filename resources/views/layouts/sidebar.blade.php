@@ -6,7 +6,7 @@
     </svg>
  </button>
  
- <aside id="sidebar-multi-level-sidebar" class="fixed lg:mt-16 top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+ <aside id="sidebar-multi-level-sidebar" class="fixed shadow-2xl shadow-gray-300 lg:mt-16 top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         {{-- <div class="shrink-0 flex items-center">
@@ -36,10 +36,10 @@
              </button>
              <ul id="dropdown-example" class="hidden py-2 space-y-2">
                    <li>
-                      <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add Products</a>
+                      <a href="/products/create" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add Products</a>
                    </li>
                    <li>
-                      <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Show Products</a>
+                      <a href="/products" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Show Products</a>
                    </li>
                    
              </ul>
