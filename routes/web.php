@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,13 +20,23 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// routes/web.php
+
+Route::get('/test', function () {
+    return view('test');
+});
+
 
 Route::resource('products', ProductController::class);
 Route::resource('suppliers', SupplierController::class);
+Route::resource('customers', CustomerController::class);
+
 
 
 Route::middleware('auth')->group(function () {

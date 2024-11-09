@@ -8,25 +8,27 @@ use Illuminate\Http\Request;
 class SupplierController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the suppliers.
      */
     public function index()
     {
-        // This method would display all suppliers, but for now, it's not used.
+        
+        $suppliers = Supplier::all();
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new supplier.
      */
     public function create()
     {
+        // Get the maximum supplied_id for generating a new unique ID for the supplier
         $maxSupplied_id = Supplier::max('supplied_id') ?? 0;
-        $supplier = Supplier::all(); // Fetch all suppliers, if needed for the form.
-        return view('suppliers.create', compact('maxSupplied_id', 'supplier'));
+        return view('suppliers.create', compact('maxSupplied_id'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created supplier in storage.
      */
     public function store(Request $request)
     {
@@ -42,7 +44,7 @@ class SupplierController extends Controller
         ]);
 
         // Step 2: Create a new Supplier record
-        $supplier = Supplier::create([
+        Supplier::create([
             'supplied_id' => $validated['supplied_id'],
             'suppliername' => $validated['suppliername'],
             'address' => $validated['address'],
@@ -58,34 +60,71 @@ class SupplierController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified supplier.
      */
     public function show(Supplier $supplier)
     {
-        // This method will display the details of a specific supplier
+
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified supplier.
      */
     public function edit(Supplier $supplier)
     {
-        // This method will show the form to edit a specific supplier
+        
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified supplier in storage.
      */
     public function update(Request $request, Supplier $supplier)
-    {
-        // This method will update a specific supplier
+{
+   
+    // Step 1: Validate the incoming request
+    try {
+        $validated = $request->validate([
+            
+            'suppliername' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'contact_person' => 'required|string|max:255',
+            'mobile' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+        ]);
+       
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        dd($e->errors()); // Display validation errors
     }
+    
+    // See all incoming request data
+
+    // Step 2: Update the supplier's data
+    $supplier->update([
+        'suppliername' => $validated['suppliername'],
+        'address' => $validated['address'],
+        'city' => $validated['city'],
+        'contact_person' => $validated['contact_person'],
+        'mobile' => $validated['mobile'],
+        'email' => $validated['email'],
+    ]);
+
+    // Step 3: Redirect to the suppliers index page with a success message
+    return redirect()->route('suppliers.index')
+                     ->with('success', 'Supplier updated successfully!');
+}
+
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified supplier from storage.
      */
     public function destroy(Supplier $supplier)
     {
-        // This method will delete a specific supplier
+        // Delete the supplier record
+        $supplier->delete();
+
+        // Redirect to the suppliers index page with a success message
+        return redirect()->route('suppliers.index')
+                         ->with('success', 'Supplier deleted successfully!');
     }
 }

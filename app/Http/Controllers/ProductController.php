@@ -22,39 +22,56 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $maxItemCode = Product::max('itemcode') ?? 0; 
-        $products = Product::all(); 
-         return view('products.create', compact('maxItemCode', 'products'));
-    }
+    // public function create()
+    // {
+    //     $maxItemCode = Product::max('itemcode') ?? 0; 
+    //     $products = Product::all(); 
+    //      return view('products.create', compact('maxItemCode', 'products'));
+    // }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'products' => 'required|array',
-            'products.*.itemcode' => 'required|numeric',
-            'products.*.itemname' => 'required|string',
-            'products.*.uom' => 'required|string',
-        ]);        
-
-        
-        $products = array_map(function ($product) {
-            return array_merge($product, [
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }, $validatedData['products']);
-
-        // Insert multiple products
-        Product::insert($products);
-
-        return redirect()->route('products.create')->with('success', 'Products added successfully');
+        // Validate the incoming data
+        $validated = $request->validate([
+            
+            'itemname' => 'required',
+            'uom' => 'required',
+        ]);
+    
+        // Now, dump the validated data
+       
+    
+        // If validation passes, create the new product record
+        Product::create($validated);
+    
+        // Redirect with a success message
+        return redirect()->route('products.index')->with('success', 'Product added successfully');
     }
 
+
+
+    public function search(Request $request)
+    {
+       
+        $query = $request->get('query'); 
+
+        if ($query) {
+           
+            $products = Product::where('itemname', 'LIKE', "%$query%")
+                                ->orWhere('uom', 'LIKE', "%$query%")
+                                ->get();
+        } else {
+            $products = []; 
+        }
+
+        return response()->json($products);
+    }
+    
+    
+    
     /**
      * Display the specified resource.
      */
@@ -103,6 +120,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
+    
         $product = Product::findOrFail($id);
         $product->delete();
 

@@ -9,8 +9,11 @@ class Product extends Model
 {
     use HasFactory;
 
-   
-    protected $primaryKey = 'itemcode'; 
+    protected $primaryKey = 'itemcode'; // Custom primary key
 
-    protected $fillable = ['itemcode', 'itemname', 'uom'];
+    public $incrementing = true; // Specify if `itemcode` is auto-incrementing
+
+    protected $keyType = 'int'; // Ensure Laravel knows this is an integer primary key
+
+    protected $fillable = ['itemname', 'uom']; // Define fillable fields
 }

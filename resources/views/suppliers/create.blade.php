@@ -3,9 +3,13 @@
     <!-- Supplier Form -->
     <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl mt-4 shadow-lg">
       <h2 class="text-3xl font-extrabold text-center mb-8 ">Add New Supplier</h2>
-  
+      @if (session('success'))
+      <div class="text-center p-4 bg-green-100 font-semibold text-green-700">
+          <p>{{ session('success') }}</p>
+      </div>
+  @endif
       <!-- Form -->
-      <form action="/suppliers" method="POST" class="space-y-6">
+      <form action="{{ route('suppliers.store') }}" method="POST" class="space-y-6">
         <!-- CSRF Token (for Laravel) -->
         @csrf
   
