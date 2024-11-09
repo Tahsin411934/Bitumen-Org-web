@@ -11,6 +11,12 @@
             </button>
         </div>
 
+        {{-- @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+            
+        </div> --}}
+    {{-- @endif --}}
         <div class="bg-white shadow-lg rounded-lg p-8 w-full">
             <!-- DataTable -->
             <table id="example" class="display w-full">
@@ -28,49 +34,45 @@
                 </thead>
                 <tbody>
                     @foreach ($suppliers as $supplier)
-                    <tr>
-                        <form action="{{ route('suppliers.update', $supplier->supplied_id) }}" method="POST" class="update-form">
-                            @csrf
-                            @method('PUT')
-                            <td>{{ $supplier->supplied_id }}</td>
-                            <td>
-                                <input type="text" name="suppliername" value="{{ $supplier->suppliername }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                        <tr>
+                            <form action="{{ route('suppliers.update', $supplier->supplied_id) }}" method="POST"
+                                class="update-form">
+                                @csrf
+                                @method('PUT')
+                                <td>{{ $supplier->supplied_id }}</td>
+                                <td>
+                                    <textarea name="suppliername" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->suppliername }}</textarea>
+                                </td>
+                                <td>
+                                    <textarea name="address" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->address }}</textarea>
+                                </td>
+                                <td>
+                                    <textarea name="city" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->city }}</textarea>
+                                </td>
+                                <td>
+                                    <textarea name="contact_person" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->contact_person }}</textarea>
+                                </td>
+                                <td>
+                                    <textarea name="mobile" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->mobile }}</textarea>
+                                </td>
+                                <td>
+                                    <textarea name="email" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->email }}</textarea>
+                                </td>
+                                <td class="flex space-x-2">
+                                    <button type="button" onclick="enableEdit(this)"
+                                        class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                    <button type="submit"
+                                        class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
+                            </form>
+                            <form action="{{ route('suppliers.destroy', $supplier->supplied_id) }}" method="POST"
+                                class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                    onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
                             </td>
-                            <td>
-                                <input type="text" name="address" value="{{ $supplier->address }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
-                            </td>
-                            <td>
-                                <input type="text" name="city" value="{{ $supplier->city }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
-                            </td>
-                            <td>
-                                <input type="text" name="contact_person" value="{{ $supplier->contact_person }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
-                            </td>
-                            <td>
-                                <input type="text" name="mobile" value="{{ $supplier->mobile }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
-                            </td>
-                            <td>
-                                <input type="email" name="email" value="{{ $supplier->email }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
-                            </td>
-                            <td class="flex space-x-2">
-                                <button type="button" onclick="enableEdit(this)"
-                                    class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
-                                <button type="submit"
-                                    class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
-                        </form>
-                        <form action="{{ route('suppliers.destroy', $supplier->supplied_id) }}" method="POST" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                                onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                        </td>
-                    </tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -82,7 +84,6 @@
         class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center">
         <div class="relative w-full max-w-2xl mx-auto p-4">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal Header -->
                 <div class="flex justify-between items-center p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Add Supplier</h3>
                     <button type="button"
@@ -96,7 +97,6 @@
                     </button>
                 </div>
 
-                <!-- Modal Body -->
                 <form action="{{ route('suppliers.store') }}" method="POST" class="p-6 space-y-6">
                     @csrf
                     <input type="number" name="supplied_id" id="supplied_id" required
@@ -118,8 +118,7 @@
                         <input type="text" name="mobile" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Mobile Number">
                         <input type="email" name="email" required
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full"
-                            placeholder="Email Address">
+                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Email Address">
                     </div>
                     <div class="flex justify-center">
                         <button type="submit"
@@ -135,8 +134,18 @@
 <script>
     function enableEdit(button) {
         const row = button.closest('tr');
-        row.querySelectorAll('input').forEach(input => input.disabled = false);
+        row.querySelectorAll('textarea').forEach(textarea => textarea.disabled = false);
         button.classList.add('hidden');
         row.querySelector('.save-button').classList.remove('hidden');
     }
 </script>
+<script>
+    @if (session('success'))
+      Swal.fire({
+        title: 'Success!',
+        text: '{{ session('success') }}',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      })
+    @endif
+  </script>

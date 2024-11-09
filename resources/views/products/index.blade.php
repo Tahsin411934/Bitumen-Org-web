@@ -118,3 +118,13 @@
         row.querySelector('.save-button').classList.remove('hidden');
     }
 </script>
+<script>
+    @if (session('success'))
+      Swal.fire({
+        title: 'Success!',
+        text: '{{ session('success') }}',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      })
+    @endif
+  </script>

@@ -59,6 +59,7 @@
 
 <!-- DataTables Column Visibility Button -->
 <script src="https://cdn.datatables.net/buttons/2.3.0/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <!-- DataTables Initialization Script -->

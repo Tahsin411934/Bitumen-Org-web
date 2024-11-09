@@ -55,8 +55,7 @@ class SupplierController extends Controller
         ]);
 
         // Step 3: Redirect to the suppliers index page with a success message
-        return redirect()->route('suppliers.index')
-                         ->with('success', 'Supplier added successfully!');
+        return redirect()->route('suppliers.index')->with('success', 'Supplier added successfully!');
     }
 
     /**
@@ -110,8 +109,7 @@ class SupplierController extends Controller
     ]);
 
     // Step 3: Redirect to the suppliers index page with a success message
-    return redirect()->route('suppliers.index')
-                     ->with('success', 'Supplier updated successfully!');
+    return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully!');
 }
 
 
