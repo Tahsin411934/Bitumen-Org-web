@@ -4,7 +4,7 @@
 
         <div class="p-6 bg-white rounded-lg shadow-md">
 
-            <form action="{{ route('purchases.store') }}" method="POST">
+            <form id="purchase-form" action="{{ route('purchases.store') }}" method="POST">
                 @csrf
 
                 <div class="flex mb-4">
@@ -31,12 +31,12 @@
                     <table class="w-full table-auto border-collapse border border-gray-300">
                         <thead>
                         <tr>
-                            <th class="border border-gray-300 p-2 text-left">Item Code</th>
-                            <th class="border border-gray-300 p-2 text-left">Quantity</th>
-                            <th class="border border-gray-300 p-2 text-left">Unit of Measure</th>
-                            <th class="border border-gray-300 p-2 text-left">Price</th>
-                            <th class="border border-gray-300 p-2 text-left">Storage Location</th>
-                            <th class="border border-gray-300 p-2 text-left">Actions</th>
+                            <th class="border border-gray-300 p-2 bg-slate-200 text-left">Item Code</th>
+                            <th class="border border-gray-300 p-2 bg-slate-200 text-left">Quantity</th>
+                            <th class="border border-gray-300 p-2 bg-slate-200 text-left">Unit of Measure</th>
+                            <th class="border border-gray-300 p-2 bg-slate-200 text-left">Price</th>
+                            <th class="border border-gray-300 p-2 bg-slate-200 text-left">Storage Location</th>
+                            <th class="border border-gray-300 p-2 bg-slate-200 text-left">Actions</th>
                         </tr>
                         </thead>
                         <tbody id="item-rows">
@@ -91,6 +91,8 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
+                let itemCount = 1;
+
                 function updateUOM(selectElement) {
                     const uomValue = selectElement.options[selectElement.selectedIndex].dataset.uom;
                     const uomInput = selectElement.closest('tr').querySelector('.uom-input');
@@ -105,7 +107,7 @@
 
                 document.getElementById('add-item').addEventListener('click', function () {
                     const itemsContainer = document.getElementById('item-rows');
-                    const newItemIndex = itemsContainer.children.length;
+                    const newItemIndex = itemCount++;
 
                     const newItem = document.createElement('tr');
                     newItem.classList.add('item');
@@ -157,6 +159,26 @@
                     newItem.querySelector('.item-select').addEventListener('change', function () {
                         updateUOM(this);
                     });
+                });
+
+                document.getElementById('purchase-form').addEventListener('submit', function (event) {
+                    const itemSelects = document.querySelectorAll('.item-select');
+                    const selectedItems = new Set();
+                    let hasDuplicate = false;
+
+                    itemSelects.forEach(function (select) {
+                        const selectedItem = select.value;
+                        if (selectedItems.has(selectedItem)) {
+                            hasDuplicate = true;
+                        } else {
+                            selectedItems.add(selectedItem);
+                        }
+                    });
+
+                    if (hasDuplicate) {
+                        alert('You cannot add the same item more than once.');
+                        event.preventDefault();
+                    }
                 });
             });
         </script>
