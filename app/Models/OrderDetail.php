@@ -22,4 +22,8 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Order::class, 'order_no', 'order_no');
     }
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'itemcode', 'itemcode'); // Assuming `itemcode` is the foreign key
+    }
 }

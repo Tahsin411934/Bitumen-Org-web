@@ -77,13 +77,12 @@
                 </div>
 
                 <div class="flex gap-5 mt-6">
-                    <button type="submit" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                    <button type="submit" name="save_and_print" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:bg-teal-600 font-semibold rounded-lg">
                         Save and Print Invoice
                     </button>
-                    <button type="submit" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                    <button type="submit" name="save_and_challan" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:bg-teal-600 font-semibold rounded-lg">
                         Save and Create Challan
                     </button>
-                </div>
             </form>
         </div>
     </div>

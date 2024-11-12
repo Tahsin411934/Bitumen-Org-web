@@ -19,6 +19,8 @@ class Inventory extends Model
         'itemcode',
         'do_invoice_no',
         'quantity',
+        'sold_quantity',
+        'remaining_quantity',
         'uom',
         'price',
         'location',

@@ -13,6 +13,8 @@
                         <th>Item Code</th>
                         <th>DO/Invoice No</th>
                         <th>Quantity</th>
+                        <th>Sold Quantity</th>
+                        <th>Remaining Quantity</th>
                         <th>UOM</th>
                         <th>Price</th>
                         <th>Location</th>
@@ -27,6 +29,8 @@
                         <td>{{ $inventory->itemcode }}</td>
                         <td>{{ $inventory->do_invoice_no }}</td>
                         <td>{{ $inventory->quantity }}</td>
+                        <td>{{ $inventory->sold_quantity }}</td>
+                        <td>{{ $inventory->quantity - $inventory->sold_quantity }}</td>
                         <td>{{ $inventory->uom }}</td>
                         <td>{{ $inventory->price }}</td>
                         <td>{{ $inventory->location }}</td>

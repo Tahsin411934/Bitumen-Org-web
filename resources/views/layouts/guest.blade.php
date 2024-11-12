@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div >
-            <div class="lg:w-[83%] md:w-[30%] w-[80%] text-gray-400 pb-5 mx-auto font-bold"><p>---------- RAHMAN CORPORATION ---------</p></div>
+            <div class="lg:w-[65%] md:w-[30%] w-[80%] text-gray-400 pt-5 pb-5 mx-auto font-bold"><p>------------Welcome Back-----------</p></div>
             </div>
             
                 {{ $slot }}

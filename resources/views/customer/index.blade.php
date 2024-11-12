@@ -1,5 +1,3 @@
-
-
 <x-app-layout>
     <div class="max-w-screen-lg mx-auto w-full">
         <div class="flex justify-between items-center my-8">
@@ -36,36 +34,28 @@
                             @method('PUT')
                             <td>{{ $customer->customerID }}</td>
                             <td>
-                                <input type="text" name="customername" value="{{ $customer->customername }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="customername" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->customername }}</textarea>
                             </td>
                             <td>
-                                <input type="text" name="customerType" value="{{ $customer->customerType }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="customerType" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->customerType }}</textarea>
                             </td>
                             <td>
-                                <input type="text" name="address" value="{{ $customer->address }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="address" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->address }}</textarea>
                             </td>
                             <td>
-                                <input type="text" name="city_district" value="{{ $customer->city_district }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="city_district" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->city_district }}</textarea>
                             </td>
                             <td>
-                                <input type="text" name="phone" value="{{ $customer->phone }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="phone" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->phone }}</textarea>
                             </td>
                             <td>
-                                <input type="email" name="email" value="{{ $customer->email }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="email" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->email }}</textarea>
                             </td>
                             <td>
-                                <input type="text" name="contactperson" value="{{ $customer->contactperson }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="contactperson" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->contactperson }}</textarea>
                             </td>
                             <td>
-                                <input type="text" name="contactperson_mobile" value="{{ $customer->contactperson_mobile }}"
-                                    class="w-full border border-gray-300 rounded px-2 py-1" disabled>
+                                <textarea name="contactperson_mobile" class="w-full border border-gray-300 rounded px-2 py-1 resize-none" disabled>{{ $customer->contactperson_mobile }}</textarea>
                             </td>
                             <td class="flex space-x-2">
                                 <button type="button" onclick="enableEdit(this)"
@@ -119,7 +109,7 @@
                         <input type="text" name="address" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Address">
                         <input type="text" name="city_district" required
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="City/District"> <!-- Change this from city_district to city -->
+                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="City/District">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
                         <input type="text" name="phone" required
@@ -131,7 +121,7 @@
                         <input type="text" name="contactperson" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Person">
                         <input type="text" name="contactperson_mobile" required
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Mobile"> <!-- Change this from contactperson_mobile to contactmobile -->
+                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Mobile">
                     </div>
                     <div class="flex justify-center">
                         <button type="submit"
@@ -148,9 +138,10 @@
 <script>
     function enableEdit(button) {
         const row = button.closest('tr');
-        row.querySelectorAll('input').forEach(input => input.disabled = false);
-        button.classList.add('hidden');
-        row.querySelector('.save-button').classList.remove('hidden');
+        row.querySelectorAll('textarea').forEach(textarea => textarea.disabled = false); // Enable all textarea fields
+        row.querySelectorAll('input').forEach(input => input.disabled = false); // Enable all input fields (if any)
+        button.classList.add('hidden'); // Hide the Edit button
+        row.querySelector('.save-button').classList.remove('hidden'); // Show the Save button
     }
 </script>
 
@@ -163,4 +154,4 @@
         confirmButtonText: 'OK'
       })
     @endif
-  </script>
+</script>

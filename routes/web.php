@@ -8,6 +8,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ChallanController;
+use App\Http\Controllers\scaleSlipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,13 @@ Route::resource('inventories', InventoryController::class);
 Route::resource('orders', OrderController::class);
 
 // Route::put('inventories', [InventoryController::class, 'update1'])->name('inventories.update');
+Route::get('/challan/{salesOrderNo}', [ChallanController::class, 'showChallanForm'])->name('challan.create');
+Route::post('/delivery', [ChallanController::class, 'store'])->name('delivery.store');
+Route::get('/challanPrint/{challanno}')->name('ChallanPrint.create');
+Route::get('/scaleSlip/{order_no}', [scaleSlipController::class, 'create'])->name('scaleSlip.create');
+Route::post('slipscale', [scaleSlipController::class, 'store'])->name('slipscale.store');
+Route::get('/scaleSlip/show/{slipno}', [scaleSlipController::class, 'show'])->name('scaleSlip.show');
+
 
 
 Route::middleware('auth')->group(function () {
