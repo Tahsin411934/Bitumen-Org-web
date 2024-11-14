@@ -99,9 +99,7 @@
 
                 <form action="{{ route('suppliers.store') }}" method="POST" class="p-6 space-y-6">
                     @csrf
-                    <input type="number" name="supplied_id" id="supplied_id" required
-                        class="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                        placeholder="Enter supplied ID">
+                   
                     <div class="grid grid-cols-2 gap-6">
                         <input type="text" name="suppliername" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Supplier Name">
@@ -115,7 +113,7 @@
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Person">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
-                        <input type="text" name="mobile" required
+                        <input type="number" name="mobile" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Mobile Number">
                         <input type="email" name="email" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Email Address">

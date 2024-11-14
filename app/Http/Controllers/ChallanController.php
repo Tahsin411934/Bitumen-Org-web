@@ -14,41 +14,20 @@ use Validator;
 
 class ChallanController extends Controller
 {
-   public function showChallanForm($salesOrderNo)
-{
-    // Fetch the Sales Order based on the order number
-    $salesOrder = Order::with('customer', 'orderDetails')->where('order_no', $salesOrderNo)->first();
+    public function showChallanForm($salesOrderNo)
+    {
+        // Fetch the Sales Order with related inventory for the given order number
+        $salesOrder = Order::with('orderDetails.inventory.product')  // Eager load orderDetails, inventory, and product data
+        ->where('order_no', $salesOrderNo)
+        ->first();
 
-    $orderDetails = $salesOrder->orderDetails;
-    // This will show an array of itemcodes
+        // Fetch trucks and drivers
+        $trucks = Truck::all();
+        $drivers = Driver::all();
 
-    // Fetch Inventory data based on the itemcode of the order details
-    $inventoryData = [];
-    foreach ($orderDetails as $orderDetail) {
-        $inventory = Inventory::where('itemcode', $orderDetail->itemcode)->first();
-        if ($inventory) {
-            $inventoryData[] = $inventory;
-        }
+        // Pass the data to the view
+        return view('challan.form', compact('salesOrder', 'trucks', 'drivers'));
     }
-   
-
-    // Fetch Inventory data based on the itemcode of the order details
-    $inventoryData = [];
-    foreach ($orderDetails as $orderDetail) {
-        $inventory = Inventory::where('itemcode',)->first();
-        if ($inventory) {
-            $inventoryData[] = $inventory;
-        }
-    }
-
-    // Fetch all trucks and drivers
-    $trucks = Truck::all();
-    $drivers = Driver::all();
-
-    // Pass the data to the view
-    return view('challan.form', compact('salesOrder', 'orderDetails', 'inventoryData', 'trucks', 'drivers'));
-}
-
 
     public function store(Request $request)
     {
@@ -66,11 +45,9 @@ class ChallanController extends Controller
             'empty_weight.*' => 'numeric',
             'net_weight.*' => 'numeric',
         ]);
-    
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    
+        
+     
+       
         // Insert into delivery master table
         $deliveryMaster = DeliveryMaster::create([
             'datetime' => $request->datetime,
@@ -81,41 +58,46 @@ class ChallanController extends Controller
             'driver' => $request->driver,
             'license' => $request->License,
         ]);
-    
-        // Insert each delivery detail record and calculate the total quantity for each item
-        $itemQuantities = [];
-    
-        foreach ($request->delivery_details as $index => $deliveryDetail) {
+
+        // Insert delivery details for each item
+        foreach ($request->itemcode as $index => $itemcode) {
             $grossWeight = $request->gross_weight[$index];
             $emptyWeight = $request->empty_weight[$index];
             $netWeight = $grossWeight - $emptyWeight;
-    
+        
             DeliveryDetail::create([
                 'challanno' => $deliveryMaster->challanno,
-                'itemcode' => $deliveryDetail['itemcode'],
+                'purchase_no' => $itemcode,
                 'gross_weight' => $grossWeight,
                 'empty_weight' => $emptyWeight,
                 'net_weight' => $netWeight,
             ]);
-    
-        }
-    
-        // Update the sold_quantity for each item in the inventory
+
+            // Fetch the order details to get quantity information
+        $orderDetail = OrderDetail::where('order_no', $request->orderno)
         
+        ->first();
+
+    if ($orderDetail) {
+      
+        // Update Inventory table's sold quantity by `purchase_no`
+        $inventory = Inventory::where('purchase_no', $itemcode)->first();
+       
+        if ($inventory) {
+            $inventory->sold_quantity += $orderDetail->quantity;
+            $inventory->save();
+        }
+    }
+        }
+        
+
+        // Fetch the related delivery details and order data
+        $challanMemo = DeliveryMaster::with('deliveryDetails.inventory.product')->where('challanno', $deliveryMaster->challanno)->first();
     
-        // Fetch the related delivery details using the defined relationship
-        $challanMemo = DeliveryMaster::with('deliveryDetails')->where('challanno', $deliveryMaster->challanno)->first();
         $order = Order::with('customer')->where('order_no', $request->orderno)->first();
-    
-        // Return the view with the fetched data directly
+
+        // Return the receipt view with the fetched data
         return view('challan.receipt', compact('challanMemo', 'order'))
             ->with('success', 'Challan created successfully');
     }
-    
-
-    
-
-
-    
-    
 }

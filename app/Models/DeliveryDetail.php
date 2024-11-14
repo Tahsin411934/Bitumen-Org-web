@@ -13,12 +13,12 @@ class DeliveryDetail extends Model
     protected $table = 'delivery_details';
 
     // Define the primary key if it's different from 'id'
-    protected $primaryKey = 'challanno';
+
 
     // Allow mass assignment on these attributes
     protected $fillable = [
         'challanno',
-        'itemcode',
+        'purchase_no',
         'gross_weight',
         'empty_weight',
         'net_weight',
@@ -32,8 +32,9 @@ class DeliveryDetail extends Model
     {
         return $this->belongsTo(DeliveryMaster::class, 'challanno', 'challanno');
     }
-    public function product()
+    
+    public function inventory()
     {
-        return $this->belongsTo(Product::class, 'itemcode', 'itemcode');
+        return $this->belongsTo(inventory::class, 'purchase_no', 'purchase_no');
     }
 }

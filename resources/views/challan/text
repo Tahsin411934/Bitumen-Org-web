@@ -1,0 +1,28 @@
+<x-app-layout>
+    <div class="w-[80%] mx-auto">
+        @if($salesOrder) <!-- Ensure that $salesOrder is not null -->
+            <p>Order No: {{ $salesOrder->order_no }}</p>
+        
+            @foreach ($salesOrder->orderDetails as $orderDetail)
+                <p>Item Code: {{ $orderDetail->itemcode }}</p>
+                <p>Quantity: {{ $orderDetail->quantity }}</p>
+        
+                @if($orderDetail->inventory->isNotEmpty())
+                    <p>Inventory:</p>
+                    <ul>
+                        <li>Inventory Item Code: {{ $orderDetail->itemcode }}</li>
+                        @foreach ($orderDetail->inventory as $inventoryItem)
+                            
+                            <li>Inventory Quantity: {{ $inventoryItem->quantity }}</li>
+                            <!-- Display other inventory details as needed -->
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No inventory found for this order detail.</p>
+                @endif
+            @endforeach
+        @else
+            <p>No sales order found with the given order number.</p>
+        @endif
+    </div>
+</x-app-layout>

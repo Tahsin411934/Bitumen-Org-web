@@ -15,5 +15,9 @@ class Product extends Model
 
     protected $keyType = 'int'; // Ensure Laravel knows this is an integer primary key
 
-    protected $fillable = ['itemname', 'uom']; // Define fillable fields
+    protected $fillable = ['itemname', 'uom']; 
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class, 'itemcode', 'itemcode');  // Each product can appear in multiple inventory records
+    }
 }

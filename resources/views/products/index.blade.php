@@ -94,17 +94,29 @@
                 <form action="{{ route('products.store') }}" method="POST" class="p-6 space-y-6">
                     @csrf
                     <div class="grid grid-cols-2 gap-6">
-                        <textarea name="itemname" rows="2" required
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" style="resize: none; placeholder="Item Name"></textarea>
-                        <textarea name="uom" rows="2" required
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="UOM"></textarea>
+                        <input 
+                            type="text" 
+                            name="itemname" 
+                            required 
+                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" 
+                            placeholder="Item Name"
+                        />
+                        <input 
+                            type="text" 
+                            name="uom" 
+                            required 
+                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" 
+                            placeholder="UOM"
+                        />
                     </div>
                     <div class="flex justify-center">
                         <button type="submit"
-                            class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:from-blue-600 hover:to-teal-600">Add
-                            Item</button>
+                            class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white py-3 px-6 rounded-lg font-semibold shadow-lg hover:from-blue-600 hover:to-teal-600">
+                            Add Item
+                        </button>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>

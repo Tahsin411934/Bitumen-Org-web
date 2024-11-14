@@ -14,10 +14,8 @@
                     <input type="text" name="datetime" value="{{ $salesOrder->orderdate }}" readonly
                         class="w-full p-3 border-none rounded-md bg-gray-50 text-gray-500" />
                 </div>
-                <div class=" hidden justify-center items-center gap-5">
-                    
-                    <input type="text" name="orderno" value="{{ $salesOrder->order_no }}" readonly
-                        />
+                <div class="hidden justify-center items-center gap-5">
+                    <input type="text" name="orderno" value="{{ $salesOrder->order_no }}" readonly />
                 </div>
 
                 <div class="flex justify-center items-center gap-5">
@@ -61,56 +59,59 @@
             </div>
 
             <!-- Order Details -->
-            <!-- Order Details -->
-<div>
-    <table class="w-full table-auto border-collapse">
-        <thead class="bg-gray-100">
-            <tr>
-                <th class="px-4 py-2 text-sm font-semibold text-gray-700">Sl#</th>
-                <th class="px-4 py-2 text-sm font-semibold text-gray-700">Description</th>
-                <th class="px-4 py-2 text-sm font-semibold text-gray-700">Gross Weight</th>
-                <th class="px-4 py-2 text-sm font-semibold text-gray-700">Empty Weight</th>
-                <th class="px-4 py-2 text-sm font-semibold text-gray-700">Net Weight</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($orderDetails as $index => $detail)
-                <tr>
-                    <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
-                    <td class="px-4 py-2 border">
-                        {{ $detail->product->itemname ?? 'N/A' }} - Quantity: {{ $detail->quantity }} - Price: {{ number_format($detail->price, 2) }} Tk
-                        <input type="hidden" name="delivery_details[{{ $index }}][itemcode]" value="{{ $detail->product->itemcode ?? 'N/A' }}">
-                    </td>
-                    <td class="px-4 py-2 border">
-                        <input type="number" name="gross_weight[]" oninput="calculateNetWeight({{ $index }})"
-                            class="w-full p-2 border border-gray-300 rounded-md" />
-                    </td>
-                    <td class="px-4 py-2 border">
-                        <input type="number" name="empty_weight[]" oninput="calculateNetWeight({{ $index }})"
-                            class="w-full p-2 border border-gray-300 rounded-md" />
-                    </td>
-                    <td class="px-4 py-2 border">
-                        <input type="number" name="net_weight[]" readonly
-                            class="w-full p-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500" />
-                        <p id="negativeWarning_{{ $index }}" class="text-red-500 text-sm hidden">Net weight cannot be negative. Please check your input values.</p>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
+            <div>
+                <table class="w-full table-auto border-collapse">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 text-sm font-semibold text-gray-700">Sl#</th>
+                            <th class="px-4 py-2 text-sm font-semibold text-gray-700">Product Description</th>
+                            <th class="px-4 py-2 text-sm font-semibold text-gray-700">Gross Weight</th>
+                            <th class="px-4 py-2 text-sm font-semibold text-gray-700">Empty Weight</th>
+                            <th class="px-4 py-2 text-sm font-semibold text-gray-700">Net Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($salesOrder->orderDetails as $index => $detail)
+                            <tr>
+                                <td class="px-4 py-2 border text-center">{{ $index + 1 }}</td>
+                                <td class="px-4 py-2 border">
+                                    <select name="itemcode[]" class="w-full p-2 border border-gray-300 rounded-md">
+                                        @foreach ($detail->inventory as $inventoryItem)
+                                            <option value="{{ $inventoryItem->purchase_no }}">{{ $inventoryItem->product->itemcode }}-{{ $inventoryItem->product->itemname }} - Available Quantity {{ $inventoryItem->quantity }}- price {{$inventoryItem->price}}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- @foreach ($detail->inventory as $inventoryItem)
+                                            <option value="{{ $inventoryItem->quantity }}">{{ $inventoryItem->product->itemname }}</option>
+                                        @endforeach --}}
+                                </td>
+                                <td class="px-4 py-2 border">
+                                    <input type="number" name="gross_weight[]" oninput="calculateNetWeight({{ $index }})"
+                                        class="w-full p-2 border border-gray-300 rounded-md" />
+                                </td>
+                                <td class="px-4 py-2 border">
+                                    <input type="number" name="empty_weight[]" oninput="calculateNetWeight({{ $index }})"
+                                        class="w-full p-2 border border-gray-300 rounded-md" />
+                                </td>
+                                <td class="px-4 py-2 border">
+                                    <input type="number" name="net_weight[]" readonly
+                                        class="w-full p-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500" />
+                                    <p id="negativeWarning_{{ $index }}" class="text-red-500 text-sm hidden">Net weight cannot be negative. Please check your input values.</p>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    
+                </table>
+            </div>
 
             <!-- Submit Button -->
             <div class="text-center">
                 <button type="submit"
-    class="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-lg font-semibold shadow-lg hover:from-blue-600 hover:to-teal-600">
-    Save and Print Challan
-</button>
-
+                    class="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-lg font-semibold shadow-lg hover:from-blue-600 hover:to-teal-600">
+                    Save and Print Challan
+                </button>
             </div>
         </form>
-        
     </div>
 
     <script>

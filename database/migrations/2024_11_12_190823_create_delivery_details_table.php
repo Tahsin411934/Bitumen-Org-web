@@ -12,7 +12,7 @@ class CreateDeliveryDetailsTable extends Migration
     {
         Schema::create('delivery_details', function (Blueprint $table) {
             $table->unsignedBigInteger('challanno'); // Must match the type in delivery_master
-            $table->string('itemcode');
+        $table->string('purchase_no');
             $table->float('gross_weight');
             $table->float('empty_weight');
             $table->float('net_weight');

@@ -26,4 +26,10 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Product::class, 'itemcode', 'itemcode'); // Assuming `itemcode` is the foreign key
     }
+    
+    public function inventory()
+    {
+        return $this->hasMany(Inventory::class, 'itemcode', 'itemcode'); // Correct foreign key and local key
+    }
+    
 }

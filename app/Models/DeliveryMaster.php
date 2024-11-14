@@ -10,8 +10,8 @@ class DeliveryMaster extends Model
     use HasFactory;
 
     protected $table = 'delivery_master';
-    protected $primaryKey = 'challanno';  // Primary key is `challanno`
-    public $incrementing = true;  // Since `challanno` is not auto-incrementing
+    protected $primaryKey = 'challanno'; // Primary key is `challanno`
+    public $incrementing = true; // Optional, since `challanno` is auto-incrementing
 
     protected $fillable = [
         'datetime',
@@ -23,6 +23,7 @@ class DeliveryMaster extends Model
         'license',
     ];
 
+    // Define the relationship with DeliveryDetail
     public function deliveryDetails()
     {
         return $this->hasMany(DeliveryDetail::class, 'challanno', 'challanno');

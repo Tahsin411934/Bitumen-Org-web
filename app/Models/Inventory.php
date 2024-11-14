@@ -9,7 +9,7 @@ class Inventory extends Model
 {
     use HasFactory;
 
-    // Define the table name if it's not the plural form of the model name
+   
     protected $table = 'inventory'; // Optional if the table is 'inventory'
     protected $primaryKey = 'id';
     // Allow mass assignment for these fields
@@ -30,6 +30,12 @@ class Inventory extends Model
     // Optionally, if you have timestamps enabled, you can add this
     public $timestamps = true;  // This is enabled by default in Laravel, so it's optional.
 
-    // If you are using a composite primary key, you would need to customize the primary key as Laravel uses a single primary key by default
-    // protected $primaryKey = ['purchase_no', 'itemcode']; // Composite key (if needed)
+    public function orderDetail()
+    {
+        return $this->belongsTo(OrderDetail::class, 'itemcode', 'itemcode'); // Assuming 'itemcode' is the foreign key
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'itemcode', 'itemcode');  // Each inventory item is linked to one product
+    }
 }

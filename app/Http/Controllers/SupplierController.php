@@ -34,7 +34,7 @@ class SupplierController extends Controller
     {
         // Step 1: Validate the incoming request
         $validated = $request->validate([
-            'supplied_id' => 'required|string|max:255|unique:suppliers', // Ensure supplied_id is unique
+            // Ensure supplied_id is unique
             'suppliername' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
@@ -45,7 +45,7 @@ class SupplierController extends Controller
 
         // Step 2: Create a new Supplier record
         Supplier::create([
-            'supplied_id' => $validated['supplied_id'],
+           
             'suppliername' => $validated['suppliername'],
             'address' => $validated['address'],
             'city' => $validated['city'],
