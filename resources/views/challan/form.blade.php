@@ -1,5 +1,14 @@
 <x-app-layout>
     <div class="max-w-4xl mx-auto mt-1 py-8 px-6 bg-white shadow-lg rounded-lg">
+        {{-- @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif --}}
+
+
+
+        
         <div class="text-center text-2xl font-bold">
             <h1>Make a Challan</h1>
         </div>
@@ -36,7 +45,7 @@
                 <div class="flex justify-center items-center gap-5">
                     <label for="truck_no" class="block text-sm font-semibold text-gray-700">Truck No (Lorry No)</label>
                     <select name="Truck" id="truck_no" onchange="loadDriverInfo(this.value)"
-                        class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
+                    required  class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
                         <option value="">Select Truck</option>
                         @foreach ($trucks as $truck)
                             <option value="{{ $truck->truck_id }}">{{ $truck->truck_id }} - {{ $truck->type }}</option>
@@ -46,7 +55,7 @@
                 <div class="flex justify-start items-center gap-16">
                     <div class="flex justify-center items-center gap-5">
                         <label for="driver_name" class="w-full block text-sm font-semibold text-gray-700">Driver Name:</label>
-                        <input type="text" name="driver" id="driver_name" readonly
+                        <input type="text" name="driver" id="driver_name" readonly 
                             class=" p-3 border-none border-gray-300 rounded-md bg-gray-50 text-gray-500" />
                     </div>
 
@@ -77,7 +86,7 @@
                                 <td class="px-4 py-2 border">
                                     <select name="itemcode[]" class="w-full p-2 border border-gray-300 rounded-md">
                                         @foreach ($detail->inventory as $inventoryItem)
-                                            <option value="{{ $inventoryItem->purchase_no }}">{{ $inventoryItem->product->itemcode }}-{{ $inventoryItem->product->itemname }} - Available Quantity {{ $inventoryItem->quantity }}- price {{$inventoryItem->price}}</option>
+                                            <option value="{{ $inventoryItem->id }}">{{ $inventoryItem->product->itemcode }}-{{ $inventoryItem->product->itemname }} - Available Quantity: {{ $inventoryItem->quantity - $inventoryItem-> sold_quantity }}- price {{$inventoryItem->price}}</option>
                                         @endforeach
                                     </select>
                                     {{-- @foreach ($detail->inventory as $inventoryItem)
@@ -86,14 +95,14 @@
                                 </td>
                                 <td class="px-4 py-2 border">
                                     <input type="number" name="gross_weight[]" oninput="calculateNetWeight({{ $index }})"
-                                        class="w-full p-2 border border-gray-300 rounded-md" />
+                                    required  class="w-full p-2 border border-gray-300 rounded-md" />
                                 </td>
                                 <td class="px-4 py-2 border">
                                     <input type="number" name="empty_weight[]" oninput="calculateNetWeight({{ $index }})"
                                         class="w-full p-2 border border-gray-300 rounded-md" />
                                 </td>
                                 <td class="px-4 py-2 border">
-                                    <input type="number" name="net_weight[]" readonly
+                                    <input type="number" name="net_weight[]" readonly required
                                         class="w-full p-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500" />
                                     <p id="negativeWarning_{{ $index }}" class="text-red-500 text-sm hidden">Net weight cannot be negative. Please check your input values.</p>
                                 </td>
@@ -148,3 +157,13 @@
         }
     </script>
 </x-app-layout>
+<script>
+    @if (session('error'))
+      Swal.fire({
+        title: 'Error!',
+        text: 'Quantity Not Available Stock',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      })
+    @endif
+  </script>

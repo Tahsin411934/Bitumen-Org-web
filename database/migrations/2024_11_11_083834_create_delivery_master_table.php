@@ -3,13 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateDeliveryMasterTable extends Migration
 {
     public function up()
     {
         Schema::create('delivery_master', function (Blueprint $table) {
-            $table->unsignedBigInteger('challanno')->autoIncrement(); // Primary key with auto-increment
+            $table->bigIncrements('challanno'); // Auto-increment primary key
             $table->dateTime('datetime');
             $table->string('orderno');
             $table->string('client_name')->nullable();
@@ -19,8 +20,9 @@ class CreateDeliveryMasterTable extends Migration
             $table->string('license');
             $table->timestamps();
         });
-        
-        
+
+        // Set the auto-increment starting value for the `challanno` column
+        DB::statement('ALTER TABLE delivery_master AUTO_INCREMENT = 1001');
     }
 
     public function down()
@@ -28,4 +30,3 @@ class CreateDeliveryMasterTable extends Migration
         Schema::dropIfExists('delivery_master');
     }
 }
-

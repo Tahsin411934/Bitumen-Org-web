@@ -26,6 +26,9 @@ class DeliveryMaster extends Model
     // Define the relationship with DeliveryDetail
     public function deliveryDetails()
     {
+
+    //   dd($this->hasMany(DeliveryDetail::class, 'challanno', 'challanno')->get());
+        
         return $this->hasMany(DeliveryDetail::class, 'challanno', 'challanno');
     }
 }

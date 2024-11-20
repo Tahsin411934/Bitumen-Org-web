@@ -30,11 +30,13 @@ class DeliveryDetail extends Model
     // Define relationships if needed
     public function deliveryMaster()
     {
+        dd($this->belongsTo(DeliveryMaster::class, 'challanno', 'challanno')->get());
         return $this->belongsTo(DeliveryMaster::class, 'challanno', 'challanno');
     }
     
     public function inventory()
     {
-        return $this->belongsTo(inventory::class, 'purchase_no', 'purchase_no');
+       
+        return $this->belongsTo(inventory::class, 'purchase_no', 'id');
     }
 }

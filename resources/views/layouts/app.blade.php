@@ -26,7 +26,7 @@
         @include('layouts.navigation')
         <div class="lg:grid grid-cols-11">
             <!-- Sidebar -->
-            <div class="col-span-2">
+            <div class="col-span-2 ">
                 @include('layouts.sidebar')
             </div>
 
