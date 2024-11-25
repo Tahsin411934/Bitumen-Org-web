@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="max-w-screen-lg mx-auto w-full">
-        <div class="my-8">
+    <div class=" mx-auto w-[95%]">
+        <div class="my-8 w-[90%] mx-auto">
             <h1 class="text-2xl font-bold">Inventory List</h1>
         </div>
 

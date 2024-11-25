@@ -23,7 +23,7 @@ use App\Http\Controllers\scaleSlipController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth.login');
 });
 
 

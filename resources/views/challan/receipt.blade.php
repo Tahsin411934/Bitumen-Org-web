@@ -223,7 +223,7 @@
                     Challan</button>
             </div>
             <div class="no-print">
-                <a href="/"  class="bg-blue-900 text-white px-4 py-2 rounded-md">Go Back
+                <a href="/dashboard"  class="bg-blue-900 text-white px-4 py-2 rounded-md">Go Back
                     To Home</a>
             </div>
         </div>
@@ -248,7 +248,7 @@
                     <i class="fas fa-globe"></i> rahmancorporationbd.com
                 </p>
                 <div class="flex justify-between">
-                    <span class="float-right font-bold">Date: {{ date('d/m/y') }}</span>
+                    <span class="float-right font-bold">Date: </span>
 
 
                     <span class="float-right text-sm  font-bold">Receive Copy</span>
@@ -291,7 +291,7 @@
             <!-- Row 2, Column 2 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">License/Mobile:</label>
-                <p class="text-gray-800">___________</p>
+                <p class="text-gray-800"></p>
             </div>
             <div>
 

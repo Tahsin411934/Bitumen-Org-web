@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-5xl mx-auto p-6">
+    <div class="w-[98%] mx-auto p-6">
         <h2 class="text-2xl font-semibold text-gray-700 mb-6">Sales Orders View</h2>
 
         @if (session('success'))

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-5xl mx-auto p-6">
+    <div class="w-[98%] mx-auto p-6">
         <h2 class="text-2xl font-semibold text-gray-700 mb-6">Add Purchase</h2>
 
         <div class="p-6 bg-white rounded-lg shadow-md">
@@ -7,14 +7,14 @@
             <form id="purchase-form" action="{{ route('purchases.store') }}" method="POST">
                 @csrf
 
-                <div class="flex mb-4">
+                <div class="lg:flex mb-4 ">
                     <input type="date" name="purchase_date" required placeholder="Purchase Date"
                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     <input type="text" name="DO_InvoiceNo" required placeholder="Invoice No"
-                           class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                           class="w-full lg:ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
 
                     <select name="supplier_id" required
-                            class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            class="w-full lg:ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                         <option value="">Select Supplier</option>
                         @foreach ($suppliers as $supplier)
                             <option value="{{ $supplier->supplied_id }}">{{ $supplier->suppliername }}</option>
@@ -22,7 +22,7 @@
                     </select>
 
                     <input type="text" name="remarks" placeholder="Remarks (Optional)"
-                           class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                           class="w-full lg:ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
 
                 <!-- Items Section -->

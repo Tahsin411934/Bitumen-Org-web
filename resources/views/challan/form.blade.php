@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-4xl mx-auto mt-1 py-8 px-6 bg-white shadow-lg rounded-lg">
+    <div class="w-[90%] mx-auto mt-1 py-8 px-6 bg-white shadow-lg rounded-lg">
         {{-- @if (session('error'))
     <div class="alert alert-danger">
         {{ session('error') }}
