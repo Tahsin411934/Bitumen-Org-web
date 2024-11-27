@@ -276,7 +276,7 @@
             <!-- Row 1, Column 1 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
-                <p class="text-gray-800">{{ $order->customer->customername ?? 'N/A' }}</p>
+                <p class="text-gray-800">{{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }}</p>
             </div>
             <!-- Row 1, Column 2 -->
             <div class="flex items-center">
@@ -331,7 +331,7 @@
                             </div>
                             <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
                             <div class="ml-16">
-                                <strong>{{ $detail->inventory->product->itemname ?? 'N/A' }}</strong><br>
+                                <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
                             </div>
                             <div class="flex justify-between">
                                 <div class="mt-20">
@@ -429,12 +429,12 @@
             <!-- Row 1, Column 1 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
-                <p class="text-gray-800">{{ $order->customer->customername ?? 'N/A' }}</p>
+                <p class="text-gray-800">{{ $order->customer->customername ?? $Ledger->customer->customername ??  'N/A' }}</p>
             </div>
             <!-- Row 1, Column 2 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">Name of Driver:</label>
-                <p class="text-gray-800">{{ $challanMemo->driver ?? 'N/A' }}</p>
+                <p class="text-gray-800">{{ $challanMemo->driver  ?? 'N/A' }}</p>
             </div>
             <!-- Row 2, Column 1 -->
             <div class="flex items-center">
@@ -483,7 +483,7 @@
                             </div>
                             <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
                             <div class="ml-16">
-                                <strong>{{ $detail->inventory->product->itemname ?? 'N/A' }}</strong><br>
+                            <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
                             </div>
                             <div class="flex justify-between">
                                 <div class="mt-20">

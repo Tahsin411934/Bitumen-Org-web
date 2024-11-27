@@ -1,7 +1,5 @@
 <x-app-layout>
     <div class="w-[95%] mx-auto p-6">
-        
-
         <div class="p-6 bg-white rounded-lg shadow-md">
         <h2 class="text-2xl text-center font-semibold text-gray-900 mb-6">Create Order</h2>
             <form action="{{ route('orders.store') }}" method="POST">
@@ -19,6 +17,10 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="hidden">
+                        <input type="number" name="trxid" value={{ $trxID }} >
                     </div>
                     <div class="flex-1">
                         <input type="text" name="deliverylocation" value="{{ old('deliverylocation') }}" required placeholder="Delivery Location"
@@ -78,11 +80,9 @@
                 </div>
 
                 <div class="flex gap-5 mt-6">
-                    <button type="submit" name="save_and_print" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:bg-teal-600 font-semibold rounded-lg">
-                        Save and Print Invoice
-                    </button>
-                    <button type="submit" name="save_and_challan" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:bg-teal-600 font-semibold rounded-lg">
-                        Save and Create Challan
+                    
+                    <button type="submit" name="challan-order" class="w-full text-white py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:bg-teal-600 font-semibold rounded-lg">
+                       Order Now
                     </button>
             </form>
         </div>

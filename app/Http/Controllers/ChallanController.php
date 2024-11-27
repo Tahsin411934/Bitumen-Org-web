@@ -6,14 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Truck;
+use App\Models\Supplier;
 use App\Models\Driver;
 use App\Models\DeliveryMaster;
 use App\Models\DeliveryDetail;
 use App\Models\Inventory;
+use App\Models\Product;
+use App\Models\Customer;
+use App\Models\InventoryLedger;
 use Validator;
 
 class ChallanController extends Controller
 {
+
+    public function create() {
+        $suppliers = Supplier::all();
+        $products = Product::all();
+        $customers = Customer::all();
+        return view('challan.create', compact( 'suppliers', 'products', 'customers'));
+    }
+
+
     public function showChallanForm($salesOrderNo)
     {
         
@@ -25,23 +38,26 @@ class ChallanController extends Controller
         // Fetch trucks and drivers
         $trucks = Truck::all();
         $drivers = Driver::all();
-
+        $suppliers = Supplier::all();
+    
         // Pass the data to the view
-        return view('challan.form', compact('salesOrder', 'trucks', 'drivers'));
+        return view('challan.form', compact('salesOrder', 'trucks', 'drivers', 'suppliers'));
     }
 
     public function store(Request $request)
     {
         // Validation
+
         $validator = Validator::make($request->all(), [
             'datetime' => 'required|date',
-            'orderno' => 'required|string',
+            'orderno' => 'nullable|string',
             'client_name' => 'nullable|string',
             'address' => 'nullable|string',
             'Truck' => 'required|string',
+            'stock_source' => 'required|string',
             'driver' => 'required|string',
             'License' => 'required|string',
-            'delivery_details' => 'required|array',
+            'itemcode' => 'required|array',
             'gross_weight.*' => 'numeric',
             'empty_weight.*' => 'numeric',
             'net_weight.*' => 'numeric',
@@ -56,64 +72,91 @@ class ChallanController extends Controller
             'client_name' => $request->client_name,
             'address' => $request->address,
             'truck_no' => $request->Truck,
+            'stock_source' => $request->stock_source,
             'driver' => $request->driver,
             'license' => $request->License,
         ]);
-
+       
         // Insert delivery details for each item
         foreach ($request->itemcode as $index => $itemcode) {
             $grossWeight = $request->gross_weight[$index];
             $emptyWeight = $request->empty_weight[$index];
             $netWeight = $grossWeight - $emptyWeight;
-        
+           
             DeliveryDetail::create([
                 'challanno' => $deliveryMaster->challanno,
-                'purchase_no' => $itemcode,
+                'itemcode' => $itemcode,
                 'gross_weight' => $grossWeight,
                 'empty_weight' => $emptyWeight,
                 'net_weight' => $netWeight,
             ]);
 
             // Fetch the order details to get quantity information
-        $orderDetail = OrderDetail::where('order_no', $request->orderno)
         
-        ->first();
-
-    if ($orderDetail) {
        
-        // Update Inventory table's sold quantity by `purchase_no`
-        $inventory = Inventory::where('id', $itemcode)->first();
-      
+ if($request->orderno){
 
-        if ($inventory) {
-            // Check if sold quantity exceeds available quantity
-            $newSoldQuantity = $inventory->sold_quantity + $orderDetail->quantity;
-           
-            if ($newSoldQuantity > $inventory->quantity) {
-                return redirect()->back()->with('error', "Cannot update inventory for itemcode $itemcode. Sold quantity exceeds available quantity.");
-            }
-
-            $inventory->sold_quantity = $newSoldQuantity;
-            $inventory->save();
-        }
+    $orderDetail = OrderDetail::where('order_no', $request->orderno)->first();
+    $inventory = Inventory::where(function ($query) use ($itemcode, $orderDetail) {
+        $query->where('itemcode', $itemcode)
+              ->whereRaw('quantity - sold_quantity > ?', [$orderDetail->quantity]);
+    })
+    ->orderBy('created_at', 'asc')
+    ->first();
 
 
 
-        // if ($inventory) {
-        //     $inventory->sold_quantity += $orderDetail->quantity;
-        //     $inventory->save();
-        // }
-    }
+
+  
+    $inventoryLedger = InventoryLedger::create([
+        'date' => $request->datetime,
+        'itemcode' => $itemcode,
+        'DO_no' => $inventory->do_invoice_no,
+        'quantity' => $orderDetail->quantity,
+        'uom' => $orderDetail->uom,
+        'challan_no' => $deliveryMaster->challanno,
+        'order_no' => $request->orderno,
+        'status' => 'unverified',
+    ]);
+
+} else{
+   
+    $inventory = Inventory::where('itemcode', $itemcode)
+              ->whereRaw('quantity - sold_quantity > ?', $request->quantity[$index])
+  
+    ->orderBy('created_at', 'asc')
+    ->first();
+
+
+
+    $inventoryLedger = InventoryLedger::create([
+        'date' => $request->datetime,
+        'itemcode' => $itemcode,
+        'DO_no' => $inventory->do_invoice_no,
+        'quantity' => $request->quantity[$index],
+        'uom' => $request->uom[$index],
+        'challan_no' => $deliveryMaster->challanno,
+        'order_no' => '',
+        'status' => 'unverified',
+        'customer_id' => $request->customerID,
+    ]);
+
+}
+       
+       
+
+    
         }
         
 
         // Fetch the related delivery details and order data
-        $challanMemo = DeliveryMaster::with('deliveryDetails.inventory.product')->where('challanno', $deliveryMaster->challanno)->first();
+        $challanMemo = DeliveryMaster::with('deliveryDetails.product')->where('challanno', $deliveryMaster->challanno)->first();
   
         $order = Order::with('customer')->where('order_no', $request->orderno)->first();
-
+        $Ledger = InventoryLedger::with('customer')-> where('challan_no', $deliveryMaster->challanno)->first();
+// dd($Ledger);
         // Return the receipt view with the fetched data
-        return view('challan.receipt', compact('challanMemo', 'order'))
+        return view('challan.receipt', compact('challanMemo', 'order', 'Ledger'))
             ->with('success', 'Challan created successfully');
     }
 }

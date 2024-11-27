@@ -10,17 +10,9 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChallanController;
 use App\Http\Controllers\scaleSlipController;
+use App\Http\Controllers\InventoryLedgerController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -46,6 +38,8 @@ Route::resource('purchases', PurchaseController::class);
 Route::resource('inventories', InventoryController::class);
 Route::resource('orders', OrderController::class);
 
+Route::resource('inventory-ledger', InventoryLedgerController::class);
+
 // Route::put('inventories', [InventoryController::class, 'update1'])->name('inventories.update');
 Route::get('/challan/{salesOrderNo}', [ChallanController::class, 'showChallanForm'])->name('challan.create');
 Route::post('/delivery', [ChallanController::class, 'store'])->name('delivery.store');
@@ -53,6 +47,8 @@ Route::get('/challanPrint/{challanno}')->name('ChallanPrint.create');
 Route::get('/scaleSlip/{order_no}', [scaleSlipController::class, 'create'])->name('scaleSlip.create');
 Route::post('slipscale', [scaleSlipController::class, 'store'])->name('slipscale.store');
 Route::get('/scaleSlip/show/{slipno}', [scaleSlipController::class, 'show'])->name('scaleSlip.show');
+Route::get('/challanCreate', [ChallanController::class, 'create']);
+Route::get('/challan-order-create/{trxID}', [OrderController::class, 'challanOrderCreate']);
 
 
 

@@ -154,6 +154,10 @@
                     </button>
                     <ul id="dropdown-purchase" class="hidden py-2 space-y-2">
                         <li>
+                            <a href="/inventory-ledger"
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventory Ledger</a>
+                        </li>
+                        <li>
                             <a href="/inventories"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventories</a>
                         </li>
@@ -221,6 +225,11 @@
                         </svg>
                     </button>
                     <ul id="dropdown-challan" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="/challanCreate"
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                Create direct Challan</a>
+                        </li>
                         <li>
                             <a href="/challans"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View

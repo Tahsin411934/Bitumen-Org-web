@@ -18,7 +18,7 @@ class DeliveryDetail extends Model
     // Allow mass assignment on these attributes
     protected $fillable = [
         'challanno',
-        'purchase_no',
+        'itemcode',
         'gross_weight',
         'empty_weight',
         'net_weight',
@@ -38,5 +38,10 @@ class DeliveryDetail extends Model
     {
        
         return $this->belongsTo(inventory::class, 'purchase_no', 'id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'itemcode', 'itemcode');  // Each inventory item is linked to one product
     }
 }
