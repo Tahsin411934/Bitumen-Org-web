@@ -9,205 +9,200 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        @media print {
+    @media print {
 
-            /* Ensure body font stays consistent and content takes up full page width */
-            body {
-                font-family: 'Arial', sans-serif;
-            }
-
-            .container {
-                width: 100% !important;
-                padding: 0 !important;
-            }
-
-            /* Adjust background and text colors for printing */
-            .bg-white,
-            .bg-blue-900,
-            .text-gray-700,
-            .text-blue-950 {
-                color: inherit !important;
-            }
-
-            h1,
-            h2,
-            p {
-                margin: 0;
-                font-size: 14px !important;
-            }
-
-            .p-8,
-            .px-4,
-            .py-1 {
-                padding: 10px !important;
-            }
-
-            .w-[80%],
-            .w-[70%] {
-                width: 100% !important;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 10px;
-            }
-
-            table th,
-            table td {
-                border: 1px solid #ccc;
-                padding: 5px;
-                text-align: left;
-                font-size: 12px;
-            }
-
-            .border-t {
-                border-top: 1px solid #ccc;
-            }
-
-            .text-center {
-                text-align: center !important;
-            }
-
-            .no-print {
-                display: none !important;
-            }
-
-            /* Ensure QR Code size is adjusted */
-            img {
-                width: 100px;
-                height: 100px;
-            }
-
-            /* Page Break between Office Copy and Customer Copy */
-            .page-break {
-                page-break-before: always;
-            }
-
-            #heading {
-                font-size: 28px !important;
-                color: #1E3A8A !important;
-            }
-
-            #subheading {
-                font-size: 10px !important;
-                color: #090d16 !important;
-            }
-
-            #TrackChallan {
-                background-color: #1e3a8a !important;
-                color: white !important;
-                /* width: 40% !important; */
-                /* border-radius: 8px !important; */
-                /* margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 6px;
-                margin-top: 2px; */
-                text-align: center !important;
-                /* padding: 1rem !important; */
-            }
-
-            #TrackChallan h2 {
-                font-size: 16px !important;
-                font-weight: 600 !important;
-                padding-top: 0.5rem !important;
-            }
-
-            /* Ensures overall alignment and readability when printing */
-            .flex {
-                display: flex !important;
-                justify-content: space-between !important;
-            }
-
-            .space-y-4 {
-                margin-bottom: 10px !important;
-            }
-
-            .text-sm {
-                font-size: 12px !important;
-            }
-
-            /* Override specific font and padding rules in print mode */
-            .text-lg,
-            .font-semibold {
-                font-size: 16px !important;
-                font-weight: 600 !important;
-            }
-
-            /* Watermark style */
-
+        /* Ensure body font stays consistent and content takes up full page width */
+        body {
+            font-family: 'Arial', sans-serif;
         }
 
+        .container {
+            width: 100% !important;
+            padding: 0 !important;
+        }
+
+        /* Adjust background and text colors for printing */
+        .bg-white,
+        .bg-blue-900,
+        .text-gray-700,
+        .text-blue-950 {
+            color: inherit !important;
+        }
+
+        h1,
+        h2,
+        p {
+            margin: 0;
+            font-size: 14px !important;
+        }
+
+        .p-8,
+        .px-4,
+        .py-1 {
+            padding: 10px !important;
+        }
+
+        .w-[80%],
+        .w-[70%] {
+            width: 100% !important;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .border-t {
+            border-top: 1px solid #ccc;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .no-print {
+            display: none !important;
+        }
+
+        /* Ensure QR Code size is adjusted */
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* Page Break between Office Copy and Customer Copy */
+        .page-break {
+            page-break-before: always;
+        }
+
+        #heading {
+            font-size: 28px !important;
+            color: #1E3A8A !important;
+        }
+
+        #subheading {
+            font-size: 10px !important;
+            color: #090d16 !important;
+        }
+
+        #TrackChallan {
+            background-color: #1e3a8a !important;
+            color: white !important;
+          
+            text-align: center !important;
+            /* padding: 1rem !important; */
+        }
+
+        #TrackChallan h2 {
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            padding-top: 0.5rem !important;
+        }
+
+        /* Ensures overall alignment and readability when printing */
+        .flex {
+            display: flex !important;
+            justify-content: space-between !important;
+        }
+
+        .space-y-4 {
+            margin-bottom: 10px !important;
+        }
+
+        .text-sm {
+            font-size: 12px !important;
+        }
+
+        /* Override specific font and padding rules in print mode */
+        .text-lg,
+        .font-semibold {
+            font-size: 16px !important;
+            font-weight: 600 !important;
+        }
+
+        /* Watermark style */
+
+    }
 
 
+
+
+    .watermark {
+        background-image: url('/logo2.jpeg');
+        background-size: contain;
+        /* Adjust the size of the image */
+        background-repeat: no-repeat;
+        /* Prevent the image from repeating */
+        background-position: center;
+        /* Center the image */
+        width: 200%;
+        /* Set the width of the div */
+        height: 100vh;
+        /* Set the height of the div (adjust as needed) */
+    }
+
+    /* Normal styles */
+    .watermark {
+
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .watermark th,
+    .watermark td {
+        position: relative;
+        z-index: 2;
+    }
+
+    .watermark td {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Print styles */
+    @media print {
+
+        /* Ensure background images are printed */
+        body {
+            -webkit-print-color-adjust: exact;
+            /* For Webkit browsers (Chrome, Safari) */
+            print-color-adjust: exact;
+            /* For other browsers */
+        }
 
         .watermark {
-            background-image: url('/logo1.png');
-            background-size: contain;
-            /* Adjust the size of the image */
-            background-repeat: no-repeat;
+            background-image: url('/logo2.jpeg');
+            background-size: 38%;
+            /* The image will cover 50% of the container */
             /* Prevent the image from repeating */
             background-position: center;
             /* Center the image */
-            width: 200%;
-            /* Set the width of the div */
-            height: 100vh;
-            /* Set the height of the div (adjust as needed) */
+            position: relative;
+            height: 200px;
         }
 
-        /* Normal styles */
-        .watermark {
-            background-image: url('/logo1.png');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
 
         .watermark th,
         .watermark td {
             position: relative;
             z-index: 2;
+            color: black;
+            /* Ensure text color is visible during printing */
         }
 
         .watermark td {
             background-color: rgba(255, 255, 255, 0.7);
         }
-
-        /* Print styles */
-        @media print {
-
-            /* Ensure background images are printed */
-            body {
-                -webkit-print-color-adjust: exact;
-                /* For Webkit browsers (Chrome, Safari) */
-                print-color-adjust: exact;
-                /* For other browsers */
-            }
-
-            .watermark {
-                background-image: url('/logo1.png');
-                background-size: 38%;
-                /* The image will cover 50% of the container */
-                /* Prevent the image from repeating */
-                background-position: center;
-                /* Center the image */
-                position: relative;
-                height: 200px;
-            }
-
-
-            .watermark th,
-            .watermark td {
-                position: relative;
-                z-index: 2;
-                color: black;
-                /* Ensure text color is visible during printing */
-            }
-
-            .watermark td {
-                background-color: rgba(255, 255, 255, 0.7);
-            }
-        }
+    }
     </style>
 
 </head>
@@ -223,7 +218,7 @@
                     Challan</button>
             </div>
             <div class="no-print">
-                <a href="/dashboard"  class="bg-blue-900 text-white px-4 py-2 rounded-md">Go Back
+                <a href="/dashboard" class="bg-blue-900 text-white px-4 py-2 rounded-md">Go Back
                     To Home</a>
             </div>
         </div>
@@ -231,7 +226,7 @@
         <div class="bg-white rounded-lg p-8">
 
             <div class="flex text-center mt-2 justify-between items-center">
-                <img src="/logo1.png" alt="Logo" class="w-16 h-16">
+                <img src="/logo3.png" alt="Logo" class="w-16 h-16">
 
                 <h1 id="heading" class="text-5xl text-blue-950 font-bold">
                     মেসার্স রহমান কর্পোরেশন<br>
@@ -266,7 +261,7 @@
 
 
         <div class="flex">
-            <p class="font-semibold mb-5 text-gray-700">SI No/Challan No : <span
+            <p class="font-semibold mb-5 text-gray-700">SI No : <span
                     class="font-bold text-xl">{{ $challanMemo->challanno ?? 'N/A' }}</span> </p>
 
         </div>
@@ -276,7 +271,8 @@
             <!-- Row 1, Column 1 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
-                <p class="text-gray-800">{{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }}</p>
+                <p class="text-gray-800">
+                    {{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }}</p>
             </div>
             <!-- Row 1, Column 2 -->
             <div class="flex items-center">
@@ -319,38 +315,45 @@
             <tbody>
                 <!-- Table Body -->
                 @foreach ($challanMemo->deliveryDetails as $index => $detail)
-                    <tr>
-                        <!-- Description of Goods -->
-                        <td class="border border-gray-300 p-3 text-gray-700">
-                            <h1 class="text-lg font-semibold pb-2">Weight:</h1>
-                            <div class="ml-8 text-base font-normal">
-                                Gross Weight: {{ $detail->gross_weight ?? 'N/A' }}<br>
-                                Empty Weight: {{ $detail->empty_weight ?? 'N/A' }}<br>
-                                <hr class="my-1 w-96">
-                                Net Weight: {{ ($detail->gross_weight ?? 0) - ($detail->empty_weight ?? 0) }}
+                <tr>
+                    <!-- Description of Goods -->
+                    <td class="border border-gray-300 p-3 text-gray-700">
+                        <h1 class="text-lg font-semibold pb-2">Weight:</h1>
+                        <div class="ml-8 text-base font-normal">
+                            Gross Weight: {{ $detail->gross_weight ?? 'N/A' }}<br>
+                            Empty Weight: {{ $detail->empty_weight ?? 'N/A' }}<br>
+                            <hr class="my-1 w-96">
+                            Net Weight: {{ ($detail->gross_weight ?? 0) - ($detail->empty_weight ?? 0) }}
+                        </div>
+                        <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
+                        <div class="ml-16">
+                            <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
+                        </div>
+                        <div class="flex  justify-between">
+                            <div class="mt-12">
+                                Lock Number :  
                             </div>
-                            <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
-                            <div class="ml-16">
-                                <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
+                            <div class="flex items-center mt-10 gap-5 justify-center">
+                              <input type="text" name="client_name" readonly
+                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
+                    <div class="text-xl font-bold"> # </div>          
+                    <input type="text" name="client_name" readonly
+                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
+                               
                             </div>
-                            <div class="flex justify-between">
-                                <div class="mt-20">
-                                    Lock Number :
-                                </div>
+                        </div>
+                    </td>
 
-                            </div>
-                        </td>
+                    <!-- Rate Column -->
+                    <td class="border border-gray-300 p-3 text-gray-700 text-center">
+                        {{ $detail->rate ?? 'As per contract' }}
+                    </td>
 
-                        <!-- Rate Column -->
-                        <td class="border border-gray-300 p-3 text-gray-700 text-center">
-                            {{ $detail->rate ?? 'N/A' }}
-                        </td>
-
-                        <!-- Amount Column -->
-                        <td class="border border-gray-300 p-3 text-gray-700 text-center">
-                            {{ $detail->amount ?? 'N/A' }}
-                        </td>
-                    </tr>
+                    <!-- Amount Column -->
+                    <td class="border border-gray-300 p-3 text-gray-700 text-center">
+                        <!-- {{ $detail->amount ?? 'As per contract' }} -->
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -369,7 +372,9 @@
             </div>
         </div>
     </div>
-
+<div class="mt-5 bg-blue-800 text-center text-white rou">
+    <h1>Specialized in Supply of High Temperature Bulk Bitumen By own Carrier</h1>
+</div>
     <!-- Page Break -->
     <div class="page-break"></div>
 
@@ -384,7 +389,7 @@
         <div class="bg-white rounded-lg p-8">
 
             <div class="flex text-center mt-2 justify-between items-center">
-                <img src="/logo1.png" alt="Logo" class="w-16 h-16">
+                <img src="/logo3.png" alt="Logo" class="w-16 h-16">
 
                 <h1 id="heading" class="text-5xl text-blue-950 font-bold">
                     মেসার্স রহমান কর্পোরেশন<br>
@@ -401,9 +406,9 @@
                     <i class="fas fa-globe"></i> rahmancorporationbd.com
                 </p>
                 <div class="flex justify-between">
-                    <span class="float-right font-bold">Date: {{ date('d/m/y') }}</span>
+                    <span class="float-right font-bold">Date: </span>
 
-
+                    <!-- {{ date('d/m/y') }} -->
                     <span class="float-right text-sm  font-bold">Customer Copy</span>
                 </div>
             </div>
@@ -429,7 +434,8 @@
             <!-- Row 1, Column 1 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
-                <p class="text-gray-800">{{ $order->customer->customername ?? $Ledger->customer->customername ??  'N/A' }}</p>
+                <p class="text-gray-800">
+                    {{ $order->customer->customername ?? $Ledger->customer->customername ??  'N/A' }}</p>
             </div>
             <!-- Row 1, Column 2 -->
             <div class="flex items-center">
@@ -471,38 +477,45 @@
             <tbody>
                 <!-- Table Body -->
                 @foreach ($challanMemo->deliveryDetails as $index => $detail)
-                    <tr>
-                        <!-- Description of Goods -->
-                        <td class="border border-gray-300 p-3 text-gray-700">
-                            <h1 class="text-lg font-semibold pb-2">Weight:</h1>
-                            <div class="ml-8 text-base font-normal">
-                                Gross Weight: {{ $detail->gross_weight ?? 'N/A' }}<br>
-                                Empty Weight: {{ $detail->empty_weight ?? 'N/A' }}<br>
-                                <hr class="my-1 w-96">
-                                Net Weight: {{ ($detail->gross_weight ?? 0) - ($detail->empty_weight ?? 0) }}
-                            </div>
-                            <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
-                            <div class="ml-16">
+                <tr>
+                    <!-- Description of Goods -->
+                    <td class="border border-gray-300 p-3 text-gray-700">
+                        <h1 class="text-lg font-semibold pb-2">Weight:</h1>
+                        <div class="ml-8 text-base font-normal">
+                            Gross Weight: {{ $detail->gross_weight ?? 'N/A' }}<br>
+                            Empty Weight: {{ $detail->empty_weight ?? 'N/A' }}<br>
+                            <hr class="my-1 w-96">
+                            Net Weight: {{ ($detail->gross_weight ?? 0) - ($detail->empty_weight ?? 0) }}
+                        </div>
+                        <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
+                        <div class="ml-16">
                             <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
+                        </div>
+                        <div class="flex  justify-between">
+                            <div class="mt-12">
+                                Lock Number :
                             </div>
-                            <div class="flex justify-between">
-                                <div class="mt-20">
-                                    Lock Number :
-                                </div>
-
+                            <div class="flex items-center mt-10 gap-5 justify-center">
+                              <input type="text" name="client_name" readonly
+                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
+                              <div class="text-xl font-bold"> # </div>
+                    <input type="text" name="client_name" readonly
+                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
+                               
                             </div>
-                        </td>
+                        </div>
+                    </td>
 
-                        <!-- Rate Column -->
-                        <td class="border border-gray-300 p-3 text-gray-700 text-center">
-                            {{ $detail->rate ?? 'N/A' }}
-                        </td>
+                    <!-- Rate Column -->
+                    <td class="border border-gray-300 p-3 text-gray-700 text-center">
+                        {{ $detail->rate ?? 'As per contract' }}
+                    </td>
 
-                        <!-- Amount Column -->
-                        <td class="border border-gray-300 p-3 text-gray-700 text-center">
-                            {{ $detail->amount ?? 'N/A' }}
-                        </td>
-                    </tr>
+                    <!-- Amount Column -->
+                    <td class="border border-gray-300 p-3 text-gray-700 text-center">
+                        <!-- {{ $detail->amount ?? 'N/A' }} -->
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -522,6 +535,9 @@
         </div>
     </div>
     </div>
+    <div class="mt-5 bg-blue-800 text-center text-white rou">
+    <h1>Specialized in Supply of High Temperature Bulk Bitumen By own Carrier</h1>
+</div>
 </body>
 
 </html>

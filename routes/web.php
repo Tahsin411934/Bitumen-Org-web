@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// routes/web.php
+
 
 Route::get('/test', function () {
     return view('test');
@@ -37,7 +37,7 @@ Route::resource('customers', CustomerController::class);
 Route::resource('purchases', PurchaseController::class);
 Route::resource('inventories', InventoryController::class);
 Route::resource('orders', OrderController::class);
-
+Route::get('/pendingOrder', [InventoryLedgerController::class, 'pandingOrder']);
 Route::resource('inventory-ledger', InventoryLedgerController::class);
 
 // Route::put('inventories', [InventoryController::class, 'update1'])->name('inventories.update');

@@ -40,26 +40,40 @@ class OrderController extends Controller
 
     public function store(Request $request )
     {
+       
       
         // Set default order date if not provided
         $request->merge([
             'orderdate' => $request->input('orderdate', Carbon::now()->toDateString())
         ]);
     
-        // Validate the incoming data
-        $validated = $request->validate([
-            'orderdate' => 'required|date',
-            'customerid' => 'required|exists:customers,customerID',
-            'deliverylocation' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
-            'contact_phone' => 'required|string|max:20',
-            'order_details' => 'required|array',
-            'order_details.*.itemcode' => 'required|string|max:255',
-            'order_details.*.quantity' => 'required|integer',
-            'order_details.*.price' => 'required|numeric',
-        ]);
+
+        try {
+      
+            $validated = $request->validate([
+                'orderdate' => 'required|date',
+                'customerid' => 'required|exists:customers,customerID',
+                'deliverylocation' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'contact_person' => 'required|string|max:255',
+                'contact_phone' => 'required|string|max:20',
+                'order_details' => 'required|array',
+                'order_details.*.itemcode' => 'required|string|max:255',
+                'order_details.*.quantity' => 'required|integer',
+                'order_details.*.price' => 'required|numeric',
+            ]);
+        
+               
+           
     
+            
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            
+            dd($e->errors()); // This will show the validation error messages
+        }
+        // Validate the incoming data
+       
         // Create the order
         $order = Order::create($validated);
     

@@ -139,6 +139,7 @@ class ChallanController extends Controller
         'order_no' => '',
         'status' => 'unverified',
         'customer_id' => $request->customerID,
+        'supplied_id' => $request->stock_source,
     ]);
 
 }

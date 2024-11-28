@@ -59,10 +59,19 @@ class InventoryLedger extends Model
         'order_no',
         'status',
         'customer_id',
+        'supplied_id',
     ];
 
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'customerID');
+    }
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class, 'supplied_id', 'supplied_id');
+    }
+    public function products()
+    {
+        return $this->belongsTo(Product::class, 'itemcode', 'itemcode');
     }
 }

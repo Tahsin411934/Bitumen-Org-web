@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         
@@ -19,35 +17,17 @@ class ProductController extends Controller
     }
     
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     $maxItemCode = Product::max('itemcode') ?? 0; 
-    //     $products = Product::all(); 
-    //      return view('products.create', compact('maxItemCode', 'products'));
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        // Validate the incoming data
+        
         $validated = $request->validate([
             
             'itemname' => 'required',
             'uom' => 'required',
         ]);
-    
-        // Now, dump the validated data
-       
-    
-        // If validation passes, create the new product record
+          
         Product::create($validated);
-    
-        // Redirect with a success message
         return redirect()->route('products.index')->with('success', 'Product added successfully');
     }
 

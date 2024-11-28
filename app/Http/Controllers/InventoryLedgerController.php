@@ -20,9 +20,13 @@ class InventoryLedgerController extends Controller
         return view('inventory_ledger.index', compact('inventoryLedgers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function pandingOrder(){
+        $inventoryLedgers = InventoryLedger::with('customer','suppliers','products')->where('order_no', '')->get() ;
+        
+        return view('orders.pendingOrder', compact('inventoryLedgers'));
+    }
+
+
     public function create()
     {
         return view('inventory_ledger.create');
