@@ -59,7 +59,7 @@ class OrderController extends Controller
                 'contact_phone' => 'required|string|max:20',
                 'order_details' => 'required|array',
                 'order_details.*.itemcode' => 'required|string|max:255',
-                'order_details.*.quantity' => 'required|integer',
+                'order_details.*.quantity' => 'required|numeric',
                 'order_details.*.price' => 'required|numeric',
             ]);
         

@@ -102,25 +102,25 @@
                     <div class="grid grid-cols-2 gap-6">
                         <input type="text" name="customername" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Customer Name">
-                        <input type="text" name="customerType" required
+                        <input type="text" name="customerType" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Customer Type">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
-                        <input type="text" name="address" required
+                        <input type="text" name="address" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Address">
-                        <input type="text" name="city_district" required
+                        <input type="text" name="city_district" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="City/District">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
-                        <input type="text" name="phone" required
+                        <input type="text" name="phone" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Phone Number">
-                        <input type="email" name="email" required
+                        <input type="email" name="email" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Email Address">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
-                        <input type="text" name="contactperson" required
+                        <input type="text" name="contactperson" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Person">
-                        <input type="text" name="contactperson_mobile" required
+                        <input type="text" name="contactperson_mobile" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Mobile">
                     </div>
                     <div class="flex justify-center">

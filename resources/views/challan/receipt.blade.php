@@ -97,7 +97,7 @@
         #TrackChallan {
             background-color: #1e3a8a !important;
             color: white !important;
-          
+
             text-align: center !important;
             /* padding: 1rem !important; */
         }
@@ -243,7 +243,7 @@
                     <i class="fas fa-globe"></i> rahmancorporationbd.com
                 </p>
                 <div class="flex justify-between">
-                    <span class="float-right font-bold">Date: </span>
+                    <span class="float-right font-bold">Date: {{$challanMemo->datetime}} </span>
 
 
                     <span class="float-right text-sm  font-bold">Receive Copy</span>
@@ -269,7 +269,7 @@
 
         <div class="grid grid-cols-2 gap-x-8 gap-y-4 mb-6">
             <!-- Row 1, Column 1 -->
-            <div class="flex items-center">
+            <div class="flex items-center ">
                 <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
                 <p class="text-gray-800">
                     {{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }}</p>
@@ -331,15 +331,56 @@
                         </div>
                         <div class="flex  justify-between">
                             <div class="mt-12">
-                                Lock Number :  
+                                Lock Numbers:
                             </div>
                             <div class="flex items-center mt-10 gap-5 justify-center">
-                              <input type="text" name="client_name" readonly
-                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
-                    <div class="text-xl font-bold"> # </div>          
-                    <input type="text" name="client_name" readonly
-                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
-                               
+                                @php
+                                // Split the Lock_number by commas into an array
+                                $lockNumbers = explode(',', $challanMemo->Lock_number);
+
+                                // Function to convert integer to Roman numeral
+                                function intToRoman($num) {
+                                $n = intval($num);
+                                $res = '';
+
+                                // Define roman numeral values
+                                $romanNumerals = [
+                                1000 => 'M',
+                                900 => 'CM',
+                                500 => 'D',
+                                400 => 'CD',
+                                100 => 'C',
+                                90 => 'XC',
+                                50 => 'L',
+                                40 => 'XL',
+                                10 => 'X',
+                                9 => 'IX',
+                                5 => 'V',
+                                4 => 'IV',
+                                1 => 'I'
+                                ];
+
+                                foreach ($romanNumerals as $value => $symbol) {
+                                while ($n >= $value) {
+                                $res .= $symbol;
+                                $n -= $value;
+                                }
+                                }
+
+                                return $res;
+                                }
+                                @endphp
+
+                                <!-- Loop through each lock number and display it in an input field -->
+                                @foreach($lockNumbers as $index => $lockNumber)
+                                <div class="flex items-center">
+                                    <!-- Show "Lock Number I:", "Lock Number II:", etc. -->
+                                    <span class="mr-2 text-lg font-semibold">{{ intToRoman($index + 1) }}:</span>
+                                    <!-- Show the value in the input field -->
+                                    <input type="text" name="client_name" value="{{ trim($lockNumber) }}" readonly
+                                        class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </td>
@@ -372,17 +413,15 @@
             </div>
         </div>
     </div>
-<div class="mt-5 bg-blue-800 text-center text-white rou">
-    <h1>Specialized in Supply of High Temperature Bulk Bitumen By own Carrier</h1>
-</div>
+    <div class="mt-5 bg-blue-800 text-center text-white rou">
+        <h1>Specialized in Supply of High Temperature Bulk Bitumen By own Carrier</h1>
+    </div>
     <!-- Page Break -->
     <div class="page-break"></div>
 
     <!-- Customer Copy -->
     <div class="container w-[60%]   mx-auto px-4 py-1 relative ">
 
-
-        <!-- Print Icon Button -->
 
 
         <!-- Office Copy -->
@@ -491,19 +530,29 @@
                         <div class="ml-16">
                             <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
                         </div>
-                        <div class="flex  justify-between">
+                        <div class="flex justify-between">
                             <div class="mt-12">
-                                Lock Number :
+                                Lock Numbers (Customer Copy):
                             </div>
                             <div class="flex items-center mt-10 gap-5 justify-center">
-                              <input type="text" name="client_name" readonly
-                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
-                              <div class="text-xl font-bold"> # </div>
-                    <input type="text" name="client_name" readonly
-                    class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-500" />
-                               
+                                @php
+
+
+                                <!-- Loop through each lock number and display it in an input field for customer copy -->
+                                @foreach($lockNumbers as $index => $lockNumber)
+                                <div class="flex items-center">
+                                    <!-- Show "Lock Number I:", "Lock Number II:", etc. -->
+                                    <span class="mr-2 text-lg font-semibold">{{ intToRoman($index + 1) }}:</span>
+                                    <!-- Show the value in the input field -->
+                                    <input type="text" name="lock_number" value="{{ trim($lockNumber) }}" readonly
+                                        class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                </div>
+                                @endforeach
                             </div>
+
                         </div>
+
+
                     </td>
 
                     <!-- Rate Column -->
@@ -536,8 +585,8 @@
     </div>
     </div>
     <div class="mt-5 bg-blue-800 text-center text-white rou">
-    <h1>Specialized in Supply of High Temperature Bulk Bitumen By own Carrier</h1>
-</div>
+        <h1>Specialized in Supply of High Temperature Bulk Bitumen By own Carrier</h1>
+    </div>
 </body>
 
 </html>

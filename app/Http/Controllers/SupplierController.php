@@ -36,11 +36,12 @@ class SupplierController extends Controller
         $validated = $request->validate([
             // Ensure supplied_id is unique
             'suppliername' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
-            'mobile' => 'required|string|max:20',
-            'email' => 'required|email|max:255|unique:suppliers', // Ensure email is unique
+            'address' => 'nullable|string|max:255',
+'city' => 'nullable|string|max:255',
+'contact_person' => 'nullable|string|max:255',
+'mobile' => 'nullable|string|max:20',
+'email' => 'nullable|email|max:255|unique:suppliers',
+// Ensure email is unique
         ]);
 
         // Step 2: Create a new Supplier record
@@ -85,11 +86,12 @@ class SupplierController extends Controller
         $validated = $request->validate([
             
             'suppliername' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
-            'mobile' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
+            'address' => 'nullable|string|max:255',
+'city' => 'nullable|string|max:255',
+'contact_person' => 'nullable|string|max:255',
+'mobile' => 'nullable|string|max:20',
+'email' => 'nullable|email|max:255|unique:suppliers',
+
         ]);
        
     } catch (\Illuminate\Validation\ValidationException $e) {

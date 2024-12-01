@@ -65,6 +65,14 @@
                     </select>
                 </div>
             </div>
+
+            <div>
+                <label for="driver" class="block text-sm font-medium text-gray-700 mb-1">Lock Number (Comma
+                    Separate):</label>
+                <input type="text" name="Lock_number"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
+                    placeholder="Lock number" required />
+            </div>
             <div class="flex justify-start items-center gap-16">
                 <div class="flex justify-center items-center gap-5">
                     <label for="driver_name" class="w-full block text-sm font-semibold text-gray-700">Driver
@@ -79,7 +87,9 @@
                     <input type="text" name="License" id="license_no" readonly
                         class="-3 border-none border-gray-300 rounded-md bg-gray-50 text-gray-500" />
                 </div>
+                
             </div>
+
         </div>
 
         <!-- Order Details -->
@@ -117,14 +127,14 @@
 
                         <td class="px-4 py-2 border">
                             <input type="number" name="gross_weight[]" oninput="calculateNetWeight({{ $index }})"
-                                required class="w-full p-2 border border-gray-300 rounded-md" />
+                                required step="any" class="w-full p-2 border border-gray-300 rounded-md" />
                         </td>
                         <td class="px-4 py-2 border">
                             <input type="number" name="empty_weight[]" oninput="calculateNetWeight({{ $index }})"
-                                class="w-full p-2 border border-gray-300 rounded-md" />
+                            step="any"   class="w-full p-2 border border-gray-300 rounded-md" />
                         </td>
                         <td class="px-4 py-2 border">
-                            <input type="number" name="net_weight[]" readonly required
+                            <input type="number" name="net_weight[]" readonly required step="any"
                                 class="w-full p-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500" />
                             <p id="negativeWarning_{{ $index }}" class="text-red-500 text-sm hidden">Net weight cannot
                                 be negative. Please check your input values.</p>

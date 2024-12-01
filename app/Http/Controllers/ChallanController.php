@@ -53,14 +53,15 @@ class ChallanController extends Controller
             'orderno' => 'nullable|string',
             'client_name' => 'nullable|string',
             'address' => 'nullable|string',
+            'Lock_number' => 'nullable|string',
             'Truck' => 'required|string',
             'stock_source' => 'required|string',
             'driver' => 'required|string',
             'License' => 'required|string',
             'itemcode' => 'required|array',
-            'gross_weight.*' => 'numeric',
-            'empty_weight.*' => 'numeric',
-            'net_weight.*' => 'numeric',
+           'gross_weight.*' => 'nullable|numeric|regex:/^\d+(\.\d{1,10})?$/',
+'empty_weight.*' => 'nullable|numeric|regex:/^\d+(\.\d{1,10})?$/',
+'net_weight.*' => 'nullable|numeric|regex:/^\d+(\.\d{1,10})?$/',
         ]);
         
      
@@ -71,6 +72,7 @@ class ChallanController extends Controller
             'orderno' => $request->orderno,
             'client_name' => $request->client_name,
             'address' => $request->address,
+            'Lock_number' => $request->Lock_number,
             'truck_no' => $request->Truck,
             'stock_source' => $request->stock_source,
             'driver' => $request->driver,

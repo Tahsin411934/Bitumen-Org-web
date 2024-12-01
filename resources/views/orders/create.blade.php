@@ -55,11 +55,11 @@
                                 </option>
                             @endforeach
                         </select>
-                        <input type="number" name="order_details[0][quantity]" id="quantity-0" placeholder="Quantity" required
+                        <input type="number" name="order_details[0][quantity]" id="quantity-0" placeholder="Quantity" required step="any"
                                class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                         <input type="text" name="order_details[0][uom]" id="uom-0" placeholder="Unit of Measure" required readonly
                                class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                        <input type="number" name="order_details[0][price]" id="price-0" placeholder="Price" required
+                        <input type="number" name="order_details[0][price]" id="price-0" placeholder="Price" required step="any"
                                class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                         <input type="number" name="order_details[0][amount]" id="amount-0" placeholder="Amount" required readonly
                                class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">

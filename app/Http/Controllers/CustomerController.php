@@ -34,13 +34,13 @@ class CustomerController extends Controller
         
         $validated = $request->validate([
             'customername' => 'required|string|max:255',
-            'customerType' => 'required|string|max:100',
-            'address' => 'required|string|max:255',
-            'city_district' => 'required|string|max:100',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
-            'contactperson' => 'required|string|max:100',
-            'contactperson_mobile' => 'required|string|max:20',
+            'customerType' => 'nullable|string|max:100',
+            'address' => 'nullable|string|max:255',
+            'city_district' => 'nullable|string|max:100',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'contactperson' => 'nullable|string|max:100',
+            'contactperson_mobile' => 'nullable|string|max:20',
         ]);
 
         // Create a new customer
@@ -74,13 +74,13 @@ class CustomerController extends Controller
         // Validate the input
         $validated = $request->validate([
             'customername' => 'required|string|max:255',
-            'customerType' => 'required|string|max:100',
-            'address' => 'required|string|max:255',
-            'city_district' => 'required|string|max:100', // Fix 'city' to 'city_district' to match DB field
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
-            'contactperson' => 'required|string|max:100',
-            'contactperson_mobile' => 'required|string|max:20', // Fix 'contactmobile' to 'contactperson_mobile' to match DB field
+            'customerType' => 'nullable|string|max:100',
+            'address' => 'nullable|string|max:255',
+            'city_district' => 'nullable|string|max:100',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'contactperson' => 'nullable|string|max:100',
+            'contactperson_mobile' => 'nullable|string|max:20', // Fix 'contactmobile' to 'contactperson_mobile' to match DB field
         ]);
     
         // Update the customer data

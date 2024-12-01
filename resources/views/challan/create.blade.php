@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="w-[90%] mx-auto mt-12">
         <div class="text-center text-2xl pb-2 font-bold">
-            <h1>Make a Challan</h1>
+            <h1>Make a Challan(Direct)</h1>
         </div>
         <form action="{{ route('delivery.store') }}" method="POST">
             @csrf
@@ -67,7 +67,13 @@
                         placeholder="License Number" required />
                 </div>
             </div>
-
+            <div>
+                <label for="driver" class="block text-sm font-medium text-gray-700 mb-1">Lock Number (Comma
+                    Separate):</label>
+                <input type="text" name="Lock_number"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
+                    placeholder="Lock number" required />
+            </div>
             <!-- Order Details -->
             <div class="my-6">
                 <table class="w-full border-collapse table-auto text-sm">
@@ -107,12 +113,13 @@
                             <td class="border px-3 py-2">
                                 <input type="number" name="gross_weight[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                                    placeholder="Gross Weight" oninput="updateNetWeight(this)" required />
+                                    placeholder="Gross Weight" oninput="updateNetWeight(this)" required step="any" />
                             </td>
+
                             <td class="border px-3 py-2">
                                 <input type="number" name="empty_weight[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                                    placeholder="Empty Weight" oninput="updateNetWeight(this)" required />
+                                    placeholder="Empty Weight" oninput="updateNetWeight(this)" required step ="any" />
                             </td>
                             <td class="border px-3 py-2">
                                 <input type="number" name="net_weight[]"

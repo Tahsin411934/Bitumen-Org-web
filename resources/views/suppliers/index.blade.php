@@ -98,19 +98,19 @@
                     <div class="grid grid-cols-2 gap-6">
                         <input type="text" name="suppliername" required
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Supplier Name">
-                        <input type="text" name="address" required
+                        <input type="text" name="address" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Address">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
-                        <input type="text" name="city" required
+                        <input type="text" name="city" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="City">
-                        <input type="text" name="contact_person" required
+                        <input type="text" name="contact_person" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Contact Person">
                     </div>
                     <div class="grid grid-cols-2 gap-6">
-                        <input type="number" name="mobile" required
+                        <input type="number" name="mobile" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Mobile Number">
-                        <input type="email" name="email" required
+                        <input type="email" name="email" 
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full" placeholder="Email Address">
                     </div>
                     <div class="flex justify-center">

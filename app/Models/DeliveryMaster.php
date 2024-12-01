@@ -20,6 +20,7 @@ class DeliveryMaster extends Model
         'address',
         'truck_no',
         'stock_source',
+        'Lock_number',
         'driver',
         'license',
     ];
