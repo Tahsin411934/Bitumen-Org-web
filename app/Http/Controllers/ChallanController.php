@@ -15,7 +15,7 @@ use App\Models\Product;
 use App\Models\Customer;
 use App\Models\InventoryLedger;
 use Validator;
-
+use Carbon\Carbon;
 class ChallanController extends Controller
 {
 
@@ -46,8 +46,15 @@ class ChallanController extends Controller
 
     public function store(Request $request)
     {
-        // Validation
+        $inputDate = $request->input('datetime'); // e.g., "2/12/24"
 
+        // Convert to Carbon instance
+        $date = Carbon::createFromFormat('d/m/y', $inputDate);
+
+    
+        // If you want to add the current time to the date:
+        $datetime = $date->setTime(now()->hour, now()->minute, now()->second); // e.g., 2024-12-02 15:30:00
+    
         $validator = Validator::make($request->all(), [
             'datetime' => 'required|date',
             'orderno' => 'nullable|string',
@@ -68,7 +75,7 @@ class ChallanController extends Controller
        
         // Insert into delivery master table
         $deliveryMaster = DeliveryMaster::create([
-            'datetime' => $request->datetime,
+            'datetime' => $datetime,
             'orderno' => $request->orderno,
             'client_name' => $request->client_name,
             'address' => $request->address,
@@ -111,7 +118,7 @@ class ChallanController extends Controller
 
   
     $inventoryLedger = InventoryLedger::create([
-        'date' => $request->datetime,
+        'date' => $datetime,
         'itemcode' => $itemcode,
         'DO_no' => $inventory->do_invoice_no,
         'quantity' => $orderDetail->quantity,
@@ -132,7 +139,7 @@ class ChallanController extends Controller
 
 
     $inventoryLedger = InventoryLedger::create([
-        'date' => $request->datetime,
+        'date' => $datetime,
         'itemcode' => $itemcode,
         'DO_no' => $inventory->do_invoice_no,
         'quantity' => $request->quantity[$index],

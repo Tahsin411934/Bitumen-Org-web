@@ -21,7 +21,7 @@
                 @forelse($inventoryLedgers as $ledger)
                     <tr>
                         <td class="border border-gray-300 px-4 py-2">{{ $ledger->trxid }}</td>
-                        <td class="border border-gray-300 px-4 py-2">{{ $ledger->date }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ \Carbon\Carbon::parse($ledger->date)->format('d/m/y') }}</td>
                         <td class="border border-gray-300 px-4 py-2">{{ $ledger->itemcode }}</td>
                         <td class="border border-gray-300 px-4 py-2">{{ $ledger->DO_no ?? 'N/A' }}</td>
                         <td class="border border-gray-300 px-4 py-2">{{ $ledger->quantity }}</td>

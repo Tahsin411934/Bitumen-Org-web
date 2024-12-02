@@ -51,12 +51,12 @@ class OrderController extends Controller
         try {
       
             $validated = $request->validate([
-                'orderdate' => 'required|date',
+                'orderdate' => 'nullable|date',
                 'customerid' => 'required|exists:customers,customerID',
-                'deliverylocation' => 'required|string|max:255',
-                'address' => 'required|string|max:255',
-                'contact_person' => 'required|string|max:255',
-                'contact_phone' => 'required|string|max:20',
+                'deliverylocation' => 'nullable|string|max:255',
+                'address' => 'nullable|string|max:255',
+                'contact_person' => 'nullable|string|max:255',
+                'contact_phone' => 'nullable|string|max:20',
                 'order_details' => 'required|array',
                 'order_details.*.itemcode' => 'required|string|max:255',
                 'order_details.*.quantity' => 'required|numeric',
@@ -97,7 +97,7 @@ class OrderController extends Controller
             ->update(['order_no' => $order->order_no]);
             // dd($request->trxid);
             return redirect()->back()
-            ->with('success', 'Order createdJJJJJ successfully!')
+            ->with('success', 'Order created successfully!')
             ->with('order_no', $order->order_no);
         }
     

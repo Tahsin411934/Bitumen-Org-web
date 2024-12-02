@@ -55,7 +55,7 @@ class InventoryLedgerController extends Controller
         if ($inventoryLedger->order_no) {
             // Fetch the order detail based on the order number
             $orderDetail = OrderDetail::where('order_no', $inventoryLedger->order_no)->first();
-
+            
             if ($orderDetail) {
                 // Fetch the inventory item based on itemcode from the order detail
                 $inventory = Inventory::where('itemcode', $orderDetail->itemcode)->

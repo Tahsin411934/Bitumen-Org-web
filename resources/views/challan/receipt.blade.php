@@ -243,7 +243,9 @@
                     <i class="fas fa-globe"></i> rahmancorporationbd.com
                 </p>
                 <div class="flex justify-between">
-                    <span class="float-right font-bold">Date: {{$challanMemo->datetime}} </span>
+                    <span class="float-right font-bold">Date:
+                        {{ \Carbon\Carbon::parse($challanMemo->datetime)->format('d/m/y') }} </span>
+
 
 
                     <span class="float-right text-sm  font-bold">Receive Copy</span>
@@ -287,7 +289,7 @@
             <!-- Row 2, Column 2 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">License/Mobile:</label>
-                <p class="text-gray-800"></p>
+                <p class="text-gray-800">{{ $challanMemo->license ?? 'N/A' }}</p>
             </div>
             <div>
 
@@ -371,16 +373,24 @@
                                 }
                                 @endphp
 
-                                <!-- Loop through each lock number and display it in an input field -->
-                                @foreach($lockNumbers as $index => $lockNumber)
-                                <div class="flex items-center">
-                                    <!-- Show "Lock Number I:", "Lock Number II:", etc. -->
-                                    <span class="mr-2 text-lg font-semibold">{{ intToRoman($index + 1) }}:</span>
-                                    <!-- Show the value in the input field -->
-                                    <input type="text" name="client_name" value="{{ trim($lockNumber) }}" readonly
+                                <div class="flex items-center space-x-2">
+                                    <!-- Check if there are exactly 2 lock numbers -->
+                                    @if(count($lockNumbers) === 2)
+                                    <input type="text" name="lock_numbers[]" value="{{ trim($lockNumbers[0]) }}"
+                                        readonly
+                                        class="p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                    <span class="text-lg font-semibold">#</span>
+                                    <input type="text" name="lock_numbers[]" value="{{ trim($lockNumbers[1]) }}"
+                                        readonly
+                                        class="p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                    @else
+                                    <!-- Display all lock numbers concatenated with '#' if not exactly 2 -->
+                                    <input type="text" name="lock_numbers"
+                                        value="{{ implode(' # ', array_map('trim', $lockNumbers)) }}" readonly
                                         class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                    @endif
                                 </div>
-                                @endforeach
+
                             </div>
                         </div>
                     </td>
@@ -445,7 +455,8 @@
                     <i class="fas fa-globe"></i> rahmancorporationbd.com
                 </p>
                 <div class="flex justify-between">
-                    <span class="float-right font-bold">Date: </span>
+                    <span class="float-right font-bold">Date:
+                        {{ \Carbon\Carbon::parse($challanMemo->datetime)->format('d/m/y') }} </span>
 
                     <!-- {{ date('d/m/y') }} -->
                     <span class="float-right text-sm  font-bold">Customer Copy</span>
@@ -489,7 +500,7 @@
             <!-- Row 2, Column 2 -->
             <div class="flex items-center">
                 <label class="w-40 font-semibold text-gray-700">License/Mobile:</label>
-                <p class="text-gray-800"></p>
+                <p class="text-gray-800">{{ $challanMemo->license ?? 'N/A' }}</p>
             </div>
             <div>
 
@@ -532,22 +543,32 @@
                         </div>
                         <div class="flex justify-between">
                             <div class="mt-12">
-                                Lock Numbers (Customer Copy):
+                                Lock Numbers:
                             </div>
                             <div class="flex items-center mt-10 gap-5 justify-center">
-                                @php
+
 
 
                                 <!-- Loop through each lock number and display it in an input field for customer copy -->
-                                @foreach($lockNumbers as $index => $lockNumber)
-                                <div class="flex items-center">
-                                    <!-- Show "Lock Number I:", "Lock Number II:", etc. -->
-                                    <span class="mr-2 text-lg font-semibold">{{ intToRoman($index + 1) }}:</span>
-                                    <!-- Show the value in the input field -->
-                                    <input type="text" name="lock_number" value="{{ trim($lockNumber) }}" readonly
+                                <div class="flex items-center space-x-2">
+                                    <!-- Check if there are exactly 2 lock numbers -->
+                                    @if(count($lockNumbers) === 2)
+                                    <input type="text" name="lock_numbers[]" value="{{ trim($lockNumbers[0]) }}"
+                                        readonly
+                                        class="p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                    <span class="text-lg font-semibold">#</span>
+                                    <input type="text" name="lock_numbers[]" value="{{ trim($lockNumbers[1]) }}"
+                                        readonly
+                                        class="p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                    @else
+                                    <!-- Display all lock numbers concatenated with '#' if not exactly 2 -->
+                                    <input type="text" name="lock_numbers"
+                                        value="{{ implode(' # ', array_map('trim', $lockNumbers)) }}" readonly
                                         class="w-full p-3 border-none border-gray-900 rounded-md bg-gray-200 text-gray-900" />
+                                    @endif
                                 </div>
-                                @endforeach
+
+
                             </div>
 
                         </div>

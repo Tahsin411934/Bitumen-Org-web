@@ -20,13 +20,13 @@
                     </div>
                     <div class="flex-1">
                         <label for="deliverylocation" class="block text-gray-700 font-semibold mb-2">Delivery Location</label>
-                        <input type="text" name="deliverylocation" value="{{ old('deliverylocation') }}" required
+                        <input type="text" name="deliverylocation" value="{{ old('deliverylocation') }}" 
                             placeholder="Delivery Location"
                             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
                     <div class="flex-1">
                         <label for="address" class="block text-gray-700 font-semibold mb-2">Address</label>
-                        <input type="text" name="address" value="{{ old('address') }}" required placeholder="Address"
+                        <input type="text" name="address" value="{{ old('address') }}"  placeholder="Address"
                             id="address"
                             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
@@ -35,12 +35,12 @@
                 <!-- Contact Information -->
                 <div class="flex mb-4 space-x-4">
                     <div class="flex-1">
-                        <input type="text" name="contact_person" value="{{ old('contact_person') }}" required
+                        <input type="text" name="contact_person" value="{{ old('contact_person') }}" 
                             placeholder="Contact Person"
                             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
                     <div class="flex-1">
-                        <input type="text" name="contact_phone" value="{{ old('contact_phone') }}" required
+                        <input type="text" name="contact_phone" value="{{ old('contact_phone') }}" 
                             placeholder="Contact Phone"
                             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
@@ -53,13 +53,13 @@
                         <input type="hidden" name="order_details[0][itemcode]" value="{{ $ledger->products->itemcode }}">
                         <input type="text" value="{{ $ledger->products->itemname }}" readonly
                             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50 text-gray-700">
-                        <input type="number" name="order_details[0][quantity]" id="quantity-0"  placeholder="Quantity" value="{{ $ledger->quantity }}"
+                        <input type="number" name="order_details[0][quantity]" id="quantity-0"  placeholder="Quantity" value="{{ $ledger->quantity }}" step="any"
                             required class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                         <input type="text" name="order_details[0][uom]" id="uom-0" placeholder="Unit of Measure" value="{{ $ledger->uom }}"
                             required readonly class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                        <input type="number" name="order_details[0][price]" id="price-0" placeholder="Price" required
+                        <input type="number" name="order_details[0][price]" id="price-0" placeholder="Price" required step="any"
                             class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                        <input type="number" name="order_details[0][amount]" id="amount-0" placeholder="Amount" required readonly
+                        <input type="number" name="order_details[0][amount]" id="amount-0" placeholder="Amount" required step="any" readonly
                             class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                         <button type="button" class="remove-detail bg-red-500 text-white p-3 rounded-lg ml-4">Remove</button>
                     </div>
@@ -70,7 +70,7 @@
                 <!-- Grand Total -->
                 <div class="flex justify-end mt-6">
                     <label class="font-semibold text-lg mr-4">Grand Total:</label>
-                    <input type="text" id="grand-total" name="grand_total" readonly
+                    <input type="text" id="grand-total" name="grand_total" readonly step="any"
                         class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-gray-100" value="0.00">
                 </div>
 
@@ -107,7 +107,7 @@
                 const quantity = parseFloat(detail.querySelector(`#quantity-${index}`).value) || 0;
                 const price = parseFloat(detail.querySelector(`#price-${index}`).value) || 0;
                 const amountInput = detail.querySelector(`#amount-${index}`);
-                amountInput.value = (quantity * price).toFixed(2);
+                amountInput.value = (quantity * price).toFixed(3);
                 updateGrandTotal();
             }
 
@@ -116,10 +116,10 @@
                 const template = `
                     <div class="order-detail flex mb-4">
                         <input type="text" name="order_details[${newIndex}][itemcode]" placeholder="Item Code" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input type="number" name="order_details[${newIndex}][quantity]" id="quantity-${newIndex}" placeholder="Quantity" required class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                        <input type="text" name="order_details[${newIndex}][uom]" id="uom-${newIndex}" placeholder="Unit of Measure" required class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                        <input type="number" name="order_details[${newIndex}][price]" id="price-${newIndex}" placeholder="Price" required class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                        <input type="number" name="order_details[${newIndex}][amount]" id="amount-${newIndex}" placeholder="Amount" readonly class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <input type="number" name="order_details[${newIndex}][quantity]" id="quantity-${newIndex}" placeholder="Quantity" required step="any" class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <input type="text" name="order_details[${newIndex}][uom]" id="uom-${newIndex}" placeholder="Unit of Measure" required  class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <input type="number" name="order_details[${newIndex}][price]" id="price-${newIndex}" placeholder="Price" required step="any" class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <input type="number" name="order_details[${newIndex}][amount]" id="amount-${newIndex}" placeholder="Amount" readonly step="any" class="w-full ml-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                         <button type="button" class="remove-detail bg-red-500 text-white p-3 rounded-lg ml-4">Remove</button>
                     </div>`;
                 orderContainer.insertAdjacentHTML('beforeend', template);

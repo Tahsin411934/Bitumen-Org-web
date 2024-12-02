@@ -21,22 +21,22 @@
                         </select>
                     </div>
                     <div class="flex-1">
-                        <input type="text" name="deliverylocation" value="{{ old('deliverylocation') }}" required placeholder="Delivery Location"
+                        <input type="text" name="deliverylocation" value="{{ old('deliverylocation') }}"  placeholder="Delivery Location"
                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
                     <div class="flex-1">
-                        <input type="text" name="address" value="{{ old('address') }}" required placeholder="Address"
+                        <input type="text" name="address" value="{{ old('address') }}"  placeholder="Address"
                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
                 </div>
                 
                 <div class="flex mb-4 space-x-4">
                     <div class="flex-1">
-                        <input type="text" name="contact_person" value="{{ old('contact_person') }}" required placeholder="Contact Person"
+                        <input type="text" name="contact_person" value="{{ old('contact_person') }}"  placeholder="Contact Person"
                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
                     <div class="flex-1">
-                        <input type="text" name="contact_phone" value="{{ old('contact_phone') }}" required placeholder="Contact Phone"
+                        <input type="text" name="contact_phone" value="{{ old('contact_phone') }}"  placeholder="Contact Phone"
                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
                     </div>
                 </div>

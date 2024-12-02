@@ -33,7 +33,7 @@ class InventoryController extends Controller
             'purchase_no' => 'required|string|max:50',
             'itemcode' => 'required|string|max:50',
             'do_invoice_no' => 'required|string|max:50',
-            'quantity' => 'required|integer',
+            'quantity' => 'required|numeric',
             'uom' => 'required|string|max:10',
             'price' => 'required|numeric',
             'location' => 'required|string|max:100',

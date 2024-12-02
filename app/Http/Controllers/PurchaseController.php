@@ -7,6 +7,7 @@ use App\Models\Inventory;
 use App\Models\Supplier;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
@@ -36,6 +37,14 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
 {
+    $inputDate = $request->input('purchase_date'); // e.g., "2/12/24"
+
+    // Convert to Carbon instance
+    $date = Carbon::createFromFormat('d/m/y', $inputDate);
+
+    // If you want to add the current time to the date:
+    $datetime = $date->setTime(now()->hour, now()->minute, now()->second); // e.g., 2024-12-02 15:30:00
+
     // Validate the incoming request data
     $request->validate([
         'purchase_date' => 'required|date',
@@ -44,7 +53,7 @@ class PurchaseController extends Controller
         'remarks' => 'nullable|string',
         'items' => 'required|array',
         'items.*.itemcode' => 'required|string',
-        'items.*.quantity' => 'required|integer',
+        'items.*.quantity' => 'required|numeric',
         'items.*.uom' => 'required|string',
         'items.*.price' => 'required|numeric',
         'items.*.storage_location' => 'required|string',
@@ -52,7 +61,7 @@ class PurchaseController extends Controller
 
     // Insert data into purchase_master table
     $purchaseMaster = PurchaseMaster::create([
-        'purchase_date' => $request->purchase_date,
+        'purchase_date' => $datetime,
         'supplier_id' => $request->supplier_id,
         'DO_InvoiceNo' => $request->DO_InvoiceNo,
         'remarks' => $request->remarks,

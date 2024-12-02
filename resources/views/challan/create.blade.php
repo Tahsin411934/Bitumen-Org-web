@@ -6,13 +6,38 @@
         <form action="{{ route('delivery.store') }}" method="POST">
             @csrf
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="grid grid-cols-1 mt-5 md:grid-cols-3 gap-4 mb-6">
                 <div>
-                    <label for="order_no" class="block text-sm font-medium text-gray-700 mb-1">Date:</label>
-                    <input type="date" name="datetime"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                        placeholder="Select Date" required />
+                    <div class="w-full">
+                        <label for="order_no" class="block text-sm font-semibold text-gray-700">Date: </label>
+
+                        
+                            <input id="datepicker" type="text" placeholder="Select Date"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                                name="datetime" required />
+                       
+
+                        <script>
+                        // Initialize flatpickr with dd/mm/yy format
+                        flatpickr("#datepicker", {
+                            dateFormat: "d/m/y", // Display format as d/m/yy (e.g., 23/12/24)
+                            altInput: true, // User-friendly format
+                            altFormat: "d/m/y", // Optional: shows the same user-friendly format
+                            onChange: function(selectedDates, dateStr, instance) {
+                                // You can use the formatted date (d/m/y) for submission directly
+                                const formattedDate = dateStr; // e.g., "23/12/24"
+
+                                // If you need to ensure the correct format before submission, you can adjust here
+                                document.querySelector('input[name="datetime"]').value = formattedDate;
+                            }
+                        });
+                        </script>
+
+                    </div>
+
+
                 </div>
+
 
                 <div>
                     <label for="client_name" class="block text-sm font-medium text-gray-700 mb-1">Customer:</label>
@@ -61,7 +86,8 @@
                         placeholder="Driver Name" required />
                 </div>
                 <div>
-                    <label for="license" class="block text-sm font-medium text-gray-700 mb-1">License No:</label>
+                    <label for="license" class="block text-sm font-medium text-gray-700 mb-1">License No/Mobile
+                        No:</label>
                     <input type="text" name="License"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
                         placeholder="License Number" required />
@@ -94,7 +120,7 @@
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm product-select"
                                     required>
                                     <option value="">Select Product</option>
-                                    @foreach ($products as $product)
+                                    @foreach ($products as $index => $product)
                                     <option value="{{ $product->itemcode }}" data-uom="{{ $product->uom }}">
                                         {{ $product->itemcode }} - {{ $product->itemname }}</option>
                                     @endforeach
@@ -103,7 +129,7 @@
                             <td class="border px-3 py-2">
                                 <input type="number" name="quantity[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                                    placeholder="Quantity" required />
+                                    placeholder="Quantity" required step="any" />
                             </td>
                             <td class="border px-3 py-2">
                                 <input type="text" name="uom[]"
@@ -119,13 +145,17 @@
                             <td class="border px-3 py-2">
                                 <input type="number" name="empty_weight[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                                    placeholder="Empty Weight" oninput="updateNetWeight(this)" required step ="any" />
+                                    placeholder="Empty Weight" oninput="updateNetWeight(this)" required step="any" />
                             </td>
                             <td class="border px-3 py-2">
                                 <input type="number" name="net_weight[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-600 focus:outline-none text-sm"
                                     readonly />
+                                <p id="negativeWarning_{{ $index }}" class="text-red-500 text-sm hidden">
+                                    Net weight cannot be negative. Please check your input values.
+                                </p>
                             </td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -152,18 +182,41 @@
         });
     });
 
-    // Function to calculate Net Weight
     function updateNetWeight(input) {
+        // Get the closest row containing the inputs
         const row = input.closest('tr');
+
+        // Find the required input fields in the same row
         const grossWeight = row.querySelector('[name="gross_weight[]"]');
         const emptyWeight = row.querySelector('[name="empty_weight[]"]');
         const netWeight = row.querySelector('[name="net_weight[]"]');
+        const quantityInput = row.querySelector('[name="quantity[]"]');
 
+        // Parse the gross and empty weights
         const grossValue = parseFloat(grossWeight.value) || 0;
         const emptyValue = parseFloat(emptyWeight.value) || 0;
 
-        const netValue = grossValue - emptyValue;
+        // Calculate the net weight
+        const netValue = (grossValue - emptyValue).toFixed(3);
+
+        // Update the net weight field
         netWeight.value = netValue > 0 ? netValue : 0;
+
+        // Sync net weight with quantity
+        quantityInput.value = netWeight.value;
+
+        // Find the warning message
+        const warningMessage = row.querySelector(`[id^="negativeWarning_"]`);
+
+        // Show or hide the warning message
+        if (grossValue - emptyValue < 0) {
+            warningMessage.classList.remove('hidden'); // Show the warning if net weight is negative
+        } else {
+            warningMessage.classList.add('hidden'); // Hide the warning if net weight is non-negative
+        }
     }
     </script>
+
+
+
 </x-app-layout>

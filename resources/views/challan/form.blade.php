@@ -20,9 +20,12 @@
         <div class="flex justify-center items-center gap-5">
             <div class="flex justify-center items-center gap-5">
                 <label for="order_no" class="block text-sm font-semibold text-gray-700">Date: </label>
-                <input type="text" name="datetime" value="{{ $salesOrder->orderdate }}" readonly
-                    class="w-full p-3 border-none rounded-md bg-gray-50 text-gray-500" />
+
+                <input id="datepicker" type="text" placeholder="Select Date"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                    name="datetime" required />
             </div>
+
             <div class="hidden justify-center items-center gap-5">
                 <input type="text" name="orderno" value="{{ $salesOrder->order_no }}" readonly />
             </div>
@@ -87,7 +90,7 @@
                     <input type="text" name="License" id="license_no" readonly
                         class="-3 border-none border-gray-300 rounded-md bg-gray-50 text-gray-500" />
                 </div>
-                
+
             </div>
 
         </div>
@@ -131,7 +134,7 @@
                         </td>
                         <td class="px-4 py-2 border">
                             <input type="number" name="empty_weight[]" oninput="calculateNetWeight({{ $index }})"
-                            step="any"   class="w-full p-2 border border-gray-300 rounded-md" />
+                                step="any" class="w-full p-2 border border-gray-300 rounded-md" />
                         </td>
                         <td class="px-4 py-2 border">
                             <input type="number" name="net_weight[]" readonly required step="any"
@@ -160,7 +163,7 @@
     function calculateNetWeight(index) {
         const grossWeight = parseFloat(document.getElementsByName('gross_weight[]')[index].value) || 0;
         const emptyWeight = parseFloat(document.getElementsByName('empty_weight[]')[index].value) || 0;
-        const netWeight = grossWeight - emptyWeight;
+        const netWeight = (grossWeight - emptyWeight).toFixed(3);
 
         // Display result in the net weight field
         document.getElementsByName('net_weight[]')[index].value = netWeight;
@@ -199,4 +202,13 @@ Swal.fire({
     confirmButtonText: 'OK'
 })
 @endif
+</script>
+
+<script>
+// Initialize flatpickr with dd/mm/yy format
+flatpickr("#datepicker", {
+    dateFormat: "d/m/y", // Set the format to dd/mm/yy (2-digit year)
+    altInput: true, // Show a user-friendly format
+    altFormat: "d/m/y" // Optional: user-friendly alternative format for display
+});
 </script>
