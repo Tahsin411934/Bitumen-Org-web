@@ -13,58 +13,54 @@
 
      
         <div class="bg-white shadow-lg rounded-lg p-8 w-full block overflow-x-auto">
-            <!-- DataTable -->
-            <table id="example" class="display table-auto w-full">
-                <thead>
+    <!-- DataTable -->
+    <div class="overflow-x-auto w-full">
+        <table id="example" class="display table-auto w-full">
+            <thead>
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Supplier Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Contact Person</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($suppliers as $supplier)
                     <tr>
-                        <th>Supplier ID</th>
-                        <th>Supplier Name</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>Contact Person</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($suppliers as $supplier)
-                        <tr>
-                            <form action="{{ route('suppliers.update', $supplier->supplied_id) }}" method="POST"
-                                class="update-form">
-                                @csrf
-                                @method('PUT')
-                                <td>{{ $supplier->supplied_id }}</td>
-                                <td>
-                                    <textarea name="suppliername" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->suppliername }}</textarea>
-                                </td>
-                                <td>
-                                    <textarea name="address" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->address }}</textarea>
-                                </td>
-                                <td>
-                                    <textarea name="city" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->city }}</textarea>
-                                </td>
-                                <td>
-                                    <textarea name="contact_person" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->contact_person }}</textarea>
-                                </td>
-                                <td>
-                                    <textarea name="mobile" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->mobile }}</textarea>
-                                </td>
-                                <td>
-                                    <textarea name="email" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->email }}</textarea>
-                                </td>
-                                <td class="flex space-x-2">
-                                    <button type="button" onclick="enableEdit(this)"
-                                        class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
-                                    <button type="submit"
-                                        class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
+                        <form action="{{ route('suppliers.update', $supplier->supplied_id) }}" method="POST" class="update-form">
+                            @csrf
+                            @method('PUT')
+                            <td>{{ $supplier->supplied_id }}</td>
+                            <td>
+                                <textarea name="suppliername" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->suppliername }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="address" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->address }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="city" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->city }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="contact_person" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->contact_person }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="mobile" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->mobile }}</textarea>
+                            </td>
+                            <td>
+                                <textarea name="email" class="w-full border resize-none border-gray-300 rounded px-2 py-1" disabled>{{ $supplier->email }}</textarea>
+                            </td>
+                            <td class="flex space-x-2">
+                                <button type="button" onclick="enableEdit(this)" class="bg-blue-900 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
                             </form>
-                            <form action="{{ route('suppliers.destroy', $supplier->supplied_id) }}" method="POST"
-                                class="inline">
+                            <form action="{{ route('suppliers.destroy', $supplier->supplied_id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                             </td>
                         </tr>
@@ -72,6 +68,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+
     </div>
 
     <!-- Add Supplier Modal -->

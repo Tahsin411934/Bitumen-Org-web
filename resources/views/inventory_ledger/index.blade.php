@@ -50,7 +50,7 @@
                         <td class="border border-gray-300 px-4 py-2 flex space-x-2">
                             <!-- Edit Button -->
                             <button type="button" onclick="enableStatusEdit(this)" 
-                                class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
+                                class="bg-blue-900 text-white px-3 py-1 rounded hover:bg-yellow-600">
                                 Edit
                             </button>
                             

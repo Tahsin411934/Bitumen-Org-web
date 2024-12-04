@@ -23,7 +23,9 @@ class ChallanController extends Controller
         $suppliers = Supplier::all();
         $products = Product::all();
         $customers = Customer::all();
-        return view('challan.create', compact( 'suppliers', 'products', 'customers'));
+        $trucks = Truck::all();
+        $drivers = Driver::all();
+        return view('challan.create', compact( 'suppliers', 'products', 'customers', 'trucks', 'drivers'));
     }
 
 
@@ -49,11 +51,18 @@ class ChallanController extends Controller
         $inputDate = $request->input('datetime'); // e.g., "2/12/24"
 
         // Convert to Carbon instance
-        $date = Carbon::createFromFormat('d/m/y', $inputDate);
+        if ($inputDate) {
+            $date = Carbon::createFromFormat('d/m/y', $inputDate);
+            $datetime = $date->setTime(now()->hour, now()->minute, now()->second);
+        } else {
+            $datetime=null;
+        }
+        
+        
 
     
         // If you want to add the current time to the date:
-        $datetime = $date->setTime(now()->hour, now()->minute, now()->second); // e.g., 2024-12-02 15:30:00
+        // e.g., 2024-12-02 15:30:00
     
         $validator = Validator::make($request->all(), [
             'datetime' => 'required|date',
@@ -131,7 +140,7 @@ class ChallanController extends Controller
 } else{
    
     $inventory = Inventory::where('itemcode', $itemcode)
-              ->whereRaw('quantity - sold_quantity > ?', $request->quantity[$index])
+              ->whereRaw('quantity - sold_quantity > ?', $request->net_weight[$index])
   
     ->orderBy('created_at', 'asc')
     ->first();
@@ -142,7 +151,7 @@ class ChallanController extends Controller
         'date' => $datetime,
         'itemcode' => $itemcode,
         'DO_no' => $inventory->do_invoice_no,
-        'quantity' => $request->quantity[$index],
+        'quantity' => $request->net_weight[$index],
         'uom' => $request->uom[$index],
         'challan_no' => $deliveryMaster->challanno,
         'order_no' => '',

@@ -11,11 +11,11 @@
                     <div class="w-full">
                         <label for="order_no" class="block text-sm font-semibold text-gray-700">Date: </label>
 
-                        
-                            <input id="datepicker" type="text" placeholder="Select Date"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
-                                name="datetime" required />
-                       
+
+                        <input id="datepicker" type="text" placeholder="Select Date" required
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                            name="datetime" required />
+
 
                         <script>
                         // Initialize flatpickr with dd/mm/yy format
@@ -61,11 +61,15 @@
 
             <!-- Truck and Driver Information -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                    <label for="Truck" class="block text-sm font-medium text-gray-700 mb-1">Truck/Lorry No:</label>
-                    <input type="text" name="Truck"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                        placeholder="Truck No" required />
+                <div class="w-full">
+                    <label for="truck_no" class="block text-sm font-semibold text-gray-700">Truck No (Lorry No)</label>
+                    <select name="Truck" id="truck_no" onchange="loadDriverInfo(this.value)" required
+                        class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
+                        <option value="">Select Truck</option>
+                        @foreach ($trucks as $truck)
+                        <option value="{{ $truck->truck_id }}">{{ $truck->truck_id }} - {{ $truck->type }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div>
                     <label for="stock_source" class="block text-sm font-medium text-gray-700 mb-1">Stock Source:</label>
@@ -79,12 +83,12 @@
                         @endforeach
                     </select>
                 </div>
-                <div>
-                    <label for="driver" class="block text-sm font-medium text-gray-700 mb-1">Driver Name:</label>
-                    <input type="text" name="driver"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                        placeholder="Driver Name" required />
+                <div class="">
+                    <label for="driver_name" class="block text-sm font-medium text-gray-700 mb-1">Driver Name:</label>
+                    <input type="text" name="driver" id="driver_name" readonly
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm bg-gray-50 text-gray-500" />
                 </div>
+
                 <div>
                     <label for="license" class="block text-sm font-medium text-gray-700 mb-1">License No/Mobile
                         No:</label>
@@ -106,7 +110,6 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="border px-3 py-2 text-gray-700">Product Description</th>
-                            <th class="border px-3 py-2 text-gray-700">Quantity</th>
                             <th class="border px-3 py-2 text-gray-700">UOM</th>
                             <th class="border px-3 py-2 text-gray-700">Gross Weight</th>
                             <th class="border px-3 py-2 text-gray-700">Empty Weight</th>
@@ -126,11 +129,7 @@
                                     @endforeach
                                 </select>
                             </td>
-                            <td class="border px-3 py-2">
-                                <input type="number" name="quantity[]"
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                                    placeholder="Quantity" required step="any" />
-                            </td>
+                            
                             <td class="border px-3 py-2">
                                 <input type="text" name="uom[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
@@ -213,6 +212,21 @@
             warningMessage.classList.remove('hidden'); // Show the warning if net weight is negative
         } else {
             warningMessage.classList.add('hidden'); // Hide the warning if net weight is non-negative
+        }
+    }
+
+    function loadDriverInfo(truckId) {
+        if (!truckId) return;
+
+        const drivers = @json($drivers);
+        const selectedDriver = drivers.find(driver => driver.truck_id == truckId);
+
+        if (selectedDriver) {
+            document.getElementById('driver_name').value = selectedDriver.name;
+            document.getElementById('license_no').value = selectedDriver.license_no;
+        } else {
+            document.getElementById('driver_name').value = '';
+            document.getElementById('license_no').value = '';
         }
     }
     </script>

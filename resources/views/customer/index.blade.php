@@ -59,7 +59,7 @@
                             </td>
                             <td class="flex space-x-2">
                                 <button type="button" onclick="enableEdit(this)"
-                                    class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                    class="bg-blue-900 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
                                 <button type="submit"
                                     class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
                         </form>
