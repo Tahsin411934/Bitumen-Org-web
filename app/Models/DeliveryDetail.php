@@ -44,4 +44,6 @@ class DeliveryDetail extends Model
     {
         return $this->belongsTo(Product::class, 'itemcode', 'itemcode');  // Each inventory item is linked to one product
     }
+
+   
 }

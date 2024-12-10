@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChallanController;
 use App\Http\Controllers\scaleSlipController;
 use App\Http\Controllers\InventoryLedgerController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -20,10 +21,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::get('/test', function () {

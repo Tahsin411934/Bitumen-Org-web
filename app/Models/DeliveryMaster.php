@@ -33,4 +33,8 @@ class DeliveryMaster extends Model
         
         return $this->hasMany(DeliveryDetail::class, 'challanno', 'challanno');
     }
+    public function truck()
+    {
+        return $this->belongsTo(Truck::class, 'truck_no', 'truck_id');
+    }
 }

@@ -41,22 +41,24 @@
 
                 <div>
                     <label for="client_name" class="block text-sm font-medium text-gray-700 mb-1">Customer:</label>
-                    <select name="customerID"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm">
+                    <select name="customerID" id="customerID"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
+                        onchange="updateAddress(this)">
                         <option value="">Select Customer</option>
                         @foreach ($customers as $customer)
-                        <option value="{{ $customer->customerID }}">{{ $customer->customerID }} -
-                            {{ $customer->customername }}</option>
+                        <option value="{{ $customer->customerID }}" data-address="{{ $customer->address }}">
+                            {{ $customer->customerID }} - {{ $customer->customername }}
+                        </option>
                         @endforeach
                     </select>
-
                 </div>
                 <div>
                     <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address:</label>
-                    <input type="text" name="address"
+                    <input type="text" name="address" id="address"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
                         placeholder="Delivery Address" required />
                 </div>
+
             </div>
 
             <!-- Truck and Driver Information -->
@@ -129,7 +131,7 @@
                                     @endforeach
                                 </select>
                             </td>
-                            
+
                             <td class="border px-3 py-2">
                                 <input type="text" name="uom[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
@@ -228,6 +230,12 @@
             document.getElementById('driver_name').value = '';
             document.getElementById('license_no').value = '';
         }
+    }
+
+    function updateAddress(select) {
+        const selectedOption = select.options[select.selectedIndex];
+        const address = selectedOption.getAttribute('data-address') || '';
+        document.getElementById('address').value = address; // Update the address input
     }
     </script>
 

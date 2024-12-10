@@ -169,8 +169,8 @@ class ChallanController extends Controller
         
 
         // Fetch the related delivery details and order data
-        $challanMemo = DeliveryMaster::with('deliveryDetails.product')->where('challanno', $deliveryMaster->challanno)->first();
-  
+        $challanMemo = DeliveryMaster::with('deliveryDetails.product','truck')->where('challanno', $deliveryMaster->challanno)->first();
+  dd($challanMemo);
         $order = Order::with('customer')->where('order_no', $request->orderno)->first();
         $Ledger = InventoryLedger::with('customer')-> where('challan_no', $deliveryMaster->challanno)->first();
 // dd($Ledger);
