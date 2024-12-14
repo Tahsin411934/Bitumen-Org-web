@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChallanController;
 use App\Http\Controllers\scaleSlipController;
 use App\Http\Controllers\InventoryLedgerController;
+use App\Http\Controllers\MEBscaleController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -51,6 +52,10 @@ Route::get('/scaleSlip/show/{slipno}', [scaleSlipController::class, 'show'])->na
 Route::get('/challanCreate', [ChallanController::class, 'create']);
 Route::get('/challan-order-create/{trxID}', [OrderController::class, 'challanOrderCreate']);
 
+// scale slip
+Route::get('/meb', [MEBscaleController::class, 'create']);
+Route::post('/meb-scale-slips', [MEBscaleController::class, 'store'])->name('meb.store');
+Route::get('/meb/print/{id}', [MEBscaleController::class, 'printMebInfo'])->name('meb.print');
 
 
 Route::middleware('auth')->group(function () {

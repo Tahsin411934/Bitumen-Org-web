@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container w-[90%] mx-auto mt-10">
+    <div class="container w-[93%] mx-auto mt-10 bg-white p-5 rounded-xl">
         <h1 class="text-2xl font-bold mb-4">Inventory Ledger</h1>
 
         <table id="example" class="table-auto w-full border-collapse border border-gray-300">
@@ -8,7 +8,7 @@
                     <th class="border border-gray-300 px-4 py-2">Transaction ID</th>
                     <th class="border border-gray-300 px-4 py-2">Date</th>
                     <th class="border border-gray-300 px-4 py-2">Item Code</th>
-                    <th class="border border-gray-300 px-4 py-2">Delivery Order No</th>
+                    <th class="border border-gray-300 px-4 py-2">DO No</th>
                     <th class="border border-gray-300 px-4 py-2">Quantity</th>
                     <th class="border border-gray-300 px-4 py-2">UOM</th>
                     <th class="border border-gray-300 px-4 py-2">Challan No</th>
@@ -29,7 +29,7 @@
                         <td class="border border-gray-300 px-4 py-2">{{ $ledger->challan_no ?? 'N/A' }}</td>
                         <td class="border border-gray-300 px-4 py-2">
                             @if(empty($ledger->order_no))
-                                <a href="/challan-order-create/{{ $ledger->trxid }}" 
+                                <a href="/bitumin/challan-order-create/{{ $ledger->trxid }}" 
                                    class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 text-sm rounded">
                                     Order Now
                                 </a>

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="w-[98%] mx-auto p-6">
+    <div class="w-[94%] mx-auto p-6">
         <h2 class="text-2xl font-semibold text-gray-700 mb-6">Add Purchase</h2>
 
         <div class="p-6 bg-white rounded-lg shadow-md">
@@ -195,13 +195,22 @@
     </div>
 </x-app-layout>
 <script>
-@if(session('success'))
-Swal.fire({
-    title: 'Success!',
-    text: '{{ session('
-    success ') }}',
-    icon: 'success',
-    confirmButtonText: 'OK'
-})
-@endif
+    @if (session('success'))
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            customClass: {
+                confirmButton: 'bg-blue-800 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300'
+            }
+        });
+    @endif
 </script>
+
+<style>
+    /* SweetAlert2 expects plain CSS, so Tailwind classes need to be converted using JIT compilation */
+    .swal2-confirm {
+        @apply bg-blue-800 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300;
+    }
+</style>

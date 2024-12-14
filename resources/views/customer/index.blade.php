@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class=" mx-auto w-[98%]">
+    <div class=" mx-auto w-[98%] lg:ml-12">
         <div class="flex justify-between items-center w-[90%] mx-auto my-8">
             <h1 class="text-2xl font-bold">Customer List</h1>
             <button data-modal-target="default-modal" data-modal-toggle="default-modal"
@@ -9,7 +9,7 @@
             </button>
         </div>
 
-        <div class="bg-white shadow-lg rounded-lg p-8 w-full">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full overflow-x-auto">
             <!-- DataTable -->
             <table id="example" class="display w-full">
                 <thead>
@@ -147,11 +147,22 @@
 
 <script>
     @if (session('success'))
-      Swal.fire({
-        title: 'Success!',
-        text: '{{ session('success') }}',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      })
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            customClass: {
+                confirmButton: 'bg-blue-800 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300'
+            }
+        });
     @endif
 </script>
+
+<style>
+    /* SweetAlert2 expects plain CSS, so Tailwind classes need to be converted using JIT compilation */
+    .swal2-confirm {
+        @apply bg-blue-800 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300;
+    }
+</style>
+

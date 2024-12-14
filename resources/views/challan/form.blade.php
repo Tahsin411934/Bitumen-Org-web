@@ -52,7 +52,7 @@
                         class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
                         <option value="">Select Truck</option>
                         @foreach ($trucks as $truck)
-                        <option value="{{ $truck->truck_id }}">{{ $truck->truck_id }} - {{ $truck->type }}</option>
+                        <option value="{{ $truck->truck_id }}">{{ $truck->reg_no }}</option>
                         @endforeach
                     </select>
                 </div>

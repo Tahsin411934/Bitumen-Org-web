@@ -1,8 +1,9 @@
 <x-app-layout>
-    <div class="w-[90%] mx-auto mt-12">
+    <div class="w-[90%] mx-auto mt-12 bg-white p-3 rounded-xl">
         <div class="text-center text-2xl pb-2 font-bold">
             <h1>Make a Challan(Direct)</h1>
         </div>
+        <hr className='-ml-0 h-[1px] border-none mt-5 bg-slate-200 mx-auto w-[50%] pb-10' />
         <form action="{{ route('delivery.store') }}" method="POST">
             @csrf
 
@@ -39,25 +40,25 @@
                 </div>
 
 
-                <div>
-                    <label for="client_name" class="block text-sm font-medium text-gray-700 mb-1">Customer:</label>
-                    <select name="customerID" id="customerID"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                        onchange="updateAddress(this)">
-                        <option value="">Select Customer</option>
-                        @foreach ($customers as $customer)
-                        <option value="{{ $customer->customerID }}" data-address="{{ $customer->address }}">
-                            {{ $customer->customerID }} - {{ $customer->customername }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div>
-                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address:</label>
-                    <input type="text" name="address" id="address"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
-                        placeholder="Delivery Address" required />
-                </div>
+               <div>
+    <label for="client_name" class="block text-sm font-medium text-gray-700 mb-1">Customer:</label>
+    <select name="customerID" id="customerID"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
+        onchange="updateAddress(this)">
+        <option value="">Select Customer</option>
+        @foreach ($customers as $customer)
+            <option value="{{ $customer->customerID }}" data-address="{{ $customer->address }}">
+                {{ $customer->customerID }} - {{ $customer->customername }}
+            </option>
+        @endforeach
+    </select>
+</div>
+<div>
+    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address:</label>
+    <input type="text" name="address" id="address"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
+        placeholder="Delivery Address" required />
+</div>
 
             </div>
 
@@ -69,7 +70,7 @@
                         class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
                         <option value="">Select Truck</option>
                         @foreach ($trucks as $truck)
-                        <option value="{{ $truck->truck_id }}">{{ $truck->truck_id }} - {{ $truck->type }}</option>
+                        <option value="{{ $truck->truck_id }}">{{ $truck->reg_no }} </option>
                         @endforeach
                     </select>
                 </div>
@@ -131,7 +132,7 @@
                                     @endforeach
                                 </select>
                             </td>
-
+                            
                             <td class="border px-3 py-2">
                                 <input type="text" name="uom[]"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-sm"
@@ -231,7 +232,7 @@
             document.getElementById('license_no').value = '';
         }
     }
-
+    
     function updateAddress(select) {
         const selectedOption = select.options[select.selectedIndex];
         const address = selectedOption.getAttribute('data-address') || '';

@@ -29,12 +29,7 @@
             color: inherit !important;
         }
 
-        h1,
-        h2,
-        p {
-            margin: 0;
-            font-size: 14px !important;
-        }
+       
 
         .p-8,
         .px-4,
@@ -137,7 +132,7 @@
 
 
     .watermark {
-        background-image: url('/logo2.jpeg');
+        background-image: url('./logo2.jpeg');
         background-size: contain;
         /* Adjust the size of the image */
         background-repeat: no-repeat;
@@ -178,9 +173,11 @@
             print-color-adjust: exact;
             /* For other browsers */
         }
-
+.print-space {
+        margin-left: 8px; /* Adjust the value as needed */
+    }
         .watermark {
-            background-image: url('/logo2.jpeg');
+            background-image: url('./logo2.jpeg');
             background-size: 38%;
             /* The image will cover 50% of the container */
             /* Prevent the image from repeating */
@@ -218,7 +215,7 @@
                     Challan</button>
             </div>
             <div class="no-print">
-                <a href="/dashboard" class="bg-blue-900 text-white px-4 py-2 rounded-md">Go Back
+                <a href="/bitumin/dashboard" class="bg-blue-900 text-white px-4 py-2 rounded-md">Go Back
                     To Home</a>
             </div>
         </div>
@@ -226,13 +223,13 @@
         <div class="bg-white rounded-lg p-8">
 
             <div class="flex text-center mt-2 justify-between items-center">
-                <img src="/logo3.png" alt="Logo" class="w-16 h-16">
+                <img src="./logo3.png" alt="Logo" class="w-16 h-16">
 
                 <h1 id="heading" class="text-5xl text-blue-950 font-bold">
                     মেসার্স রহমান কর্পোরেশন<br>
                     M/S. RAHMAN CORPORATION
                 </h1>
-                <img src="/qr.png" alt="QR Code" class="w-16 h-16">
+                <img src="./qr.png" alt="QR Code" class="w-16 h-16">
             </div>
 
             <div class="text-center">
@@ -254,7 +251,7 @@
         </div>
 
         <div class="text-center">
-            <div id="TrackChallan" class="bg-blue-900 w-32 text-white rounded-md mx-auto mb-6 mt-2">
+            <div id="TrackChallan" class="bg-blue-900 w-32 text-white rounded-md mx-auto mb-2 ">
                 <h2 class="text-lg font-semibold py-1">Truck Challan</h2>
             </div>
 
@@ -263,49 +260,47 @@
 
 
         <div class="flex">
-            <p class="font-semibold mb-5 text-gray-700">SI No : <span
+            <p class="font-semibold mb-2 text-gray-700">SI No : <span
                     class="font-bold text-xl">{{ $challanMemo->challanno ?? 'N/A' }}</span> </p>
 
         </div>
 
 
-        <div class="grid grid-cols-2 gap-x-8 gap-y-4 mb-6">
-            <!-- Row 1, Column 1 -->
-            <div class="flex items-center ">
-                <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
-                <p class="text-gray-800">
-                    {{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }}</p>
-            </div>
-            <!-- Row 1, Column 2 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Name of Driver:</label>
-                <p class="text-gray-800">{{ $challanMemo->driver ?? 'N/A' }}</p>
-            </div>
-            <!-- Row 2, Column 1 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Address:</label>
-                <p class="text-gray-800">{{ $challanMemo->address ?? 'N/A' }}</p>
-            </div>
-            <!-- Row 2, Column 2 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">License/Mobile:</label>
-                <p class="text-gray-800">{{ $challanMemo->license ?? 'N/A' }}</p>
-            </div>
-            <div>
+<div class="grid grid-cols-2 gap-x-8 gap-y-4 mb-3">
+    <!-- Client Name Row -->
+<div class="col-span-2 flex items-center justify-start text-[15px] print:space-x-2">
+    <p class="font-semibold text-gray-700">Client's Name:       <span class="ml-7 font-normal">     {{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }} </span></p>
+    
+</div>
 
-            </div>
-            <!-- Row 3, Column 1 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Lorry No:</label>
-                <p class="text-gray-800">{{ $challanMemo->truck_no ?? 'N/A' }}</p>
-            </div>
-        </div>
+
+
+    <!-- Row 1 -->
+    <div class="flex items-center justify-start space-x-4">
+        <div class="flex items-center">
+  <p class="font-semibold text-gray-700">Address:</p>
+  <span class="font-normal ml-16"> {{ $challanMemo->address ?? 'N/A' }} </span>
+</div>
+
+    </div>
+    <div class="flex items-center space-x-4">
+        <p class="font-semibold text-gray-700">Name of Driver:      <span class="ml-3 font-normal">    {{ $challanMemo->driver ?? 'N/A' }} </span></p>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="flex items-center space-x-4">
+        <p class="font-semibold text-gray-700">License/Mobile:       <span class="ml-3 font-normal">    {{ $challanMemo->license ?? 'N/A' }} </span></p>
+    </div>
+    <div class="flex items-center space-x-4">
+      <p class="font-semibold text-gray-700">Lorry No:       <span class="ml-14 font-normal">    {{ $challanMemo->truck->reg_no ?? 'N/A' }} </span></p>
+    </div>
+</div>
 
 
 
 
         <!-- Goods Description Table -->
-        <table class="w-full border border-gray-300 mb-6 h-[300px] overflow-auto watermark">
+        <table class="w-full border border-gray-300 mb-4 h-[300px] overflow-auto watermark">
             <thead>
                 <!-- Table Header -->
                 <tr class="bg-white text-xl text-center">
@@ -321,12 +316,22 @@
                     <!-- Description of Goods -->
                     <td class="border border-gray-300 p-3 text-gray-700">
                         <h1 class="text-lg font-semibold pb-2">Weight:</h1>
-                        <div class="ml-8 text-base font-normal">
-                            Gross Weight: {{ $detail->gross_weight ?? 'N/A' }}<br>
-                            Empty Weight: {{ $detail->empty_weight ?? 'N/A' }}<br>
-                            <hr class="my-1 w-96">
-                            Net Weight: {{ ($detail->gross_weight ?? 0) - ($detail->empty_weight ?? 0) }}
-                        </div>
+                       <div class="ml-8 text-base font-normal">
+    <div class="mb-2 flex gap-5">
+        <p class="font-semibold">Gross Weight:</p>
+        <p>{{ $detail->gross_weight ?? 'N/A' }} {{ $detail->product->uom ?? 'N/A' }}</p>
+    </div>
+    <div class="mb-2 flex gap-4">
+        <p class="font-semibold">Empty Weight:</p>
+        <p>{{ $detail->empty_weight ?? 'N/A' }} {{ $detail->product->uom ?? 'N/A' }}</p>
+    </div>
+    <hr class="my-1 w-96">
+    <div class="mt-2 flex gap-9">
+        <p class="font-semibold">Net Weight:</p>
+        <p>{{ $detail->net_weight ?? 'N/A' }} {{ $detail->product->uom ?? 'N/A' }}</p>
+    </div>
+</div>
+
                         <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
                         <div class="ml-16">
                             <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
@@ -335,7 +340,7 @@
                             <div class="mt-12">
                                 Lock Numbers:
                             </div>
-                            <div class="flex items-center mt-10 gap-5 justify-center">
+                            <div class="flex items-center mt-5 gap-5 justify-center">
                                 @php
                                 // Split the Lock_number by commas into an array
                                 $lockNumbers = explode(',', $challanMemo->Lock_number);
@@ -411,7 +416,7 @@
 
 
         <!-- Signature Section -->
-        <div class="flex justify-between mt-10">
+        <div class="flex justify-between mt-8">
             <div class="text-center border-t border-gray-300 pt-4">
                 <p class="text-gray-700">Driver's Signature</p>
             </div>
@@ -438,13 +443,13 @@
         <div class="bg-white rounded-lg p-8">
 
             <div class="flex text-center mt-2 justify-between items-center">
-                <img src="/logo3.png" alt="Logo" class="w-16 h-16">
+                <img src="./logo3.png" alt="Logo" class="w-16 h-16">
 
                 <h1 id="heading" class="text-5xl text-blue-950 font-bold">
                     মেসার্স রহমান কর্পোরেশন<br>
                     M/S. RAHMAN CORPORATION
                 </h1>
-                <img src="/qr.png" alt="QR Code" class="w-16 h-16">
+                <img src="./qr.png" alt="QR Code" class="w-16 h-16">
             </div>
 
             <div class="text-center">
@@ -465,7 +470,7 @@
         </div>
 
         <div class="text-center">
-            <div id="TrackChallan" class="bg-blue-900 w-32 text-white rounded-md mx-auto mb-6 mt-2">
+            <div id="TrackChallan" class="bg-blue-900 w-32 text-white rounded-md mx-auto mb-2 ">
                 <h2 class="text-lg font-semibold py-1">Truck Challan</h2>
             </div>
 
@@ -480,42 +485,40 @@
         </div>
 
 
-        <div class="grid grid-cols-2 gap-x-8 gap-y-4 mb-6">
-            <!-- Row 1, Column 1 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Client's Name:</label>
-                <p class="text-gray-800">
-                    {{ $order->customer->customername ?? $Ledger->customer->customername ??  'N/A' }}</p>
-            </div>
-            <!-- Row 1, Column 2 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Name of Driver:</label>
-                <p class="text-gray-800">{{ $challanMemo->driver  ?? 'N/A' }}</p>
-            </div>
-            <!-- Row 2, Column 1 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Address:</label>
-                <p class="text-gray-800">{{ $challanMemo->address ?? 'N/A' }}</p>
-            </div>
-            <!-- Row 2, Column 2 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">License/Mobile:</label>
-                <p class="text-gray-800">{{ $challanMemo->license ?? 'N/A' }}</p>
-            </div>
-            <div>
+       <div class="grid grid-cols-2 gap-x-8 gap-y-4 mb-3">
+    <!-- Client Name Row -->
+<div class="col-span-2 flex items-center justify-start text-[15px] print:space-x-2">
+    <p class="font-semibold text-gray-700">Client's Name:       <span class="ml-7 font-normal">     {{ $order->customer->customername ?? $Ledger->customer->customername ?? 'N/A' }} </span></p>
+    
+</div>
 
-            </div>
-            <!-- Row 3, Column 1 -->
-            <div class="flex items-center">
-                <label class="w-40 font-semibold text-gray-700">Lorry No:</label>
-                <p class="text-gray-800">{{ $challanMemo->truck_no ?? 'N/A' }}</p>
-            </div>
-        </div>
+
+
+    <!-- Row 1 -->
+    <div class="flex items-center justify-start space-x-4">
+        <div class="flex items-center">
+  <p class="font-semibold text-gray-700">Address:</p>
+  <span class="font-normal ml-16"> {{ $challanMemo->address ?? 'N/A' }} </span>
+</div>
+
+    </div>
+    <div class="flex items-center space-x-4">
+        <p class="font-semibold text-gray-700">Name of Driver:      <span class="ml-3 font-normal">    {{ $challanMemo->driver ?? 'N/A' }} </span></p>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="flex items-center space-x-4">
+        <p class="font-semibold text-gray-700">License/Mobile:       <span class="ml-3 font-normal">    {{ $challanMemo->license ?? 'N/A' }} </span></p>
+    </div>
+    <div class="flex items-center space-x-4">
+      <p class="font-semibold text-gray-700">Lorry No:       <span class="ml-14 font-normal">    {{ $challanMemo->truck->reg_no ?? 'N/A' }} </span></p>
+    </div>
+</div>
 
 
 
 
-        <table class="w-full border border-gray-300 mb-6 h-[300px] overflow-auto watermark">
+        <table class="w-full border border-gray-300 mb-4 h-[300px] overflow-auto watermark">
             <thead>
                 <!-- Table Header -->
                 <tr class="bg-white text-xl text-center">
@@ -531,12 +534,19 @@
                     <!-- Description of Goods -->
                     <td class="border border-gray-300 p-3 text-gray-700">
                         <h1 class="text-lg font-semibold pb-2">Weight:</h1>
-                        <div class="ml-8 text-base font-normal">
-                            Gross Weight: {{ $detail->gross_weight ?? 'N/A' }}<br>
-                            Empty Weight: {{ $detail->empty_weight ?? 'N/A' }}<br>
-                            <hr class="my-1 w-96">
-                            Net Weight: {{ ($detail->gross_weight ?? 0) - ($detail->empty_weight ?? 0) }}
-                        </div>
+                        <div class="mb-2 flex gap-5">
+        <p class="font-semibold">Gross Weight:</p>
+        <p>{{ $detail->gross_weight ?? 'N/A' }} {{ $detail->product->uom ?? 'N/A' }}</p>
+    </div>
+    <div class="mb-2 flex gap-4">
+        <p class="font-semibold">Empty Weight:</p>
+        <p>{{ $detail->empty_weight ?? 'N/A' }} {{ $detail->product->uom ?? 'N/A' }}</p>
+    </div>
+    <hr class="my-1 w-96">
+    <div class="mt-2 flex gap-9">
+        <p class="font-semibold">Net Weight:</p>
+        <p>{{ $detail->net_weight ?? 'N/A' }} {{ $detail->product->uom ?? 'N/A' }}</p>
+    </div>
                         <h1 class="text-lg font-semibold pt-10 ">Product Name and Brand: </h1><br>
                         <div class="ml-16">
                             <strong>{{ $detail->product->itemname ?? 'N/A' }}</strong><br>
@@ -592,7 +602,7 @@
 
 
         <!-- Signature Section -->
-        <div class="flex justify-between mt-10">
+        <div class="flex justify-between mt-8">
             <div class="text-center border-t border-gray-300 pt-4">
                 <p class="text-gray-700">Driver's Signature</p>
             </div>

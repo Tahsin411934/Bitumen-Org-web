@@ -31,7 +31,7 @@
                         <td class="border border-gray-300 px-4 py-2">{{ $ledger->challan_no ?? 'N/A' }}</td>
                         <td class="border border-gray-300 px-4 py-2">
                             @if(empty($ledger->order_no))
-                                <a href="/challan-order-create/{{ $ledger->trxid }}" 
+                                <a href="/bitumin/challan-order-create/{{ $ledger->trxid }}" 
                                    class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 text-sm rounded">
                                     Order Now
                                 </a>

@@ -1,8 +1,9 @@
 <x-app-layout>
   
-    <div class="container mx-auto p-6 bg-white">
-      <h2 class="text-2xl font-semibold mb-6 text-gray-800">Create Scale Slip for Order #{{ $order_no }}</h2>
-  
+    <div class="container mx-auto w-[92%] p-6 bg-white mt-10">
+        <div class="">
+      <h2 class="text-2xl font-semibold mb-6 text-gray-800 ">Create Scale Slip for Order #{{ $order_no }}</h2>
+  </div>
       <!-- Form to create Scale Slip -->
       <form action="{{ route('slipscale.store') }}" method="POST" class="space-y-6">
         @csrf

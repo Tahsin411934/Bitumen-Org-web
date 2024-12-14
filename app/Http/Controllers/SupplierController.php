@@ -90,7 +90,7 @@ class SupplierController extends Controller
 'city' => 'nullable|string|max:255',
 'contact_person' => 'nullable|string|max:255',
 'mobile' => 'nullable|string|max:20',
-'email' => 'nullable|email|max:255|unique:suppliers',
+'email' => 'nullable|email|max:255',
 
         ]);
        

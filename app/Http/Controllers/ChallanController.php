@@ -51,18 +51,14 @@ class ChallanController extends Controller
         $inputDate = $request->input('datetime'); // e.g., "2/12/24"
 
         // Convert to Carbon instance
-        if ($inputDate) {
+        
+         if ($inputDate) {
             $date = Carbon::createFromFormat('d/m/y', $inputDate);
             $datetime = $date->setTime(now()->hour, now()->minute, now()->second);
         } else {
             $datetime=null;
         }
         
-        
-
-    
-        // If you want to add the current time to the date:
-        // e.g., 2024-12-02 15:30:00
     
         $validator = Validator::make($request->all(), [
             'datetime' => 'required|date',
@@ -75,7 +71,7 @@ class ChallanController extends Controller
             'driver' => 'required|string',
             'License' => 'required|string',
             'itemcode' => 'required|array',
-           'gross_weight.*' => 'nullable|numeric|regex:/^\d+(\.\d{1,10})?$/',
+           'gross_weight.*' => 'required|numeric|regex:/^\d+(\.\d{1,3})?$/',
 'empty_weight.*' => 'nullable|numeric|regex:/^\d+(\.\d{1,10})?$/',
 'net_weight.*' => 'nullable|numeric|regex:/^\d+(\.\d{1,10})?$/',
         ]);
@@ -170,7 +166,7 @@ class ChallanController extends Controller
 
         // Fetch the related delivery details and order data
         $challanMemo = DeliveryMaster::with('deliveryDetails.product','truck')->where('challanno', $deliveryMaster->challanno)->first();
-  dd($challanMemo);
+  
         $order = Order::with('customer')->where('order_no', $request->orderno)->first();
         $Ledger = InventoryLedger::with('customer')-> where('challan_no', $deliveryMaster->challanno)->first();
 // dd($Ledger);
