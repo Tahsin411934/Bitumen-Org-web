@@ -21,7 +21,7 @@
                 <!-- Sidebar content (e.g., links, logo) -->
             
                 <!-- Logo -->
-                <a href="/bitumin/dashboard" class="mb-6">
+                <a href="/dashboard" class="mb-6">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
             
@@ -50,7 +50,7 @@
 
                 <!-- Dashboard -->
                 <li>
-                    <a href="/bitumin/dashboard"
+                    <a href="/dashboard"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -86,7 +86,7 @@
                     </button>
                     <ul id="dropdown-products" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="/bitumin/products"
+                            <a href="/products"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Show
                                 Products</a>
                         </li>
@@ -112,7 +112,7 @@
                     </button>
                     <ul id="dropdown-supplier" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="/bitumin/suppliers"
+                            <a href="/suppliers"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Show
                                 Supplier</a>
                         </li>
@@ -121,7 +121,7 @@
 
                 <!-- Customers Section -->
                 <li>
-                    <a href="/bitumin/customers"
+                    <a href="/customers"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
@@ -154,21 +154,21 @@
                     </button>
                     <ul id="dropdown-purchase" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="/bitumin/inventory-ledger"
+                            <a href="/inventory-ledger"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventory Ledger</a>
                         </li>
                         <li>
-                            <a href="/bitumin/inventories"
+                            <a href="/inventories"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventories</a>
                         </li>
                         <!-- Additional purchase related links can be added here -->
                         <li>
-                            <a href="/bitumin/purchases/create"
+                            <a href="/purchases/create"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
                                 Purchase</a>
                         </li>
                         {{-- <li>
-            <a href="/bitumin/purchase-history"
+            <a href="/purchase-history"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Purchase
                 History</a>
         </li> --}}
@@ -197,17 +197,17 @@
                     </button>
                     <ul id="dropdown-orders" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="/bitumin/pendingOrder"
+                            <a href="/pendingOrder"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                                 Panding Orders</a>
                         </li>
                         <li>
-                            <a href="/bitumin/orders"
+                            <a href="/orders"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                                 Sales Order View</a>
                         </li>
                         <li>
-                            <a href="/bitumin/orders/create"
+                            <a href="/orders/create"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Create
                                 New Order</a>
                         </li>
@@ -231,17 +231,17 @@
                     </button>
                     <ul id="dropdown-challan" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="/bitumin/challanCreate"
+                            <a href="/challanCreate"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                                 Create direct Challan</a>
                         </li>
                         <li>
-                            <a href="/bitumin/challans"
+                            <a href="/challans"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View
                                 Trucks</a>
                         </li>
                         <li>
-                            <a href="/bitumin/challans/create"
+                            <a href="/challans/create"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
                                 Drivers</a>
                         </li>
@@ -249,35 +249,70 @@
                 </li>
 
                 <li>
-                    <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 18 21">
-                            <path
-                                d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
-                        </svg>
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Sales</span>
-                        <svg class="w-3 h-3 transition-transform" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <ul id="dropdown-sales" class="hidden py-2 space-y-2">
-                        <li>
-                            <a href="/bitumin/sales"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View
-                                Sales</a>
-                        </li>
-                        <li>
-                            <a href="/bitumin/sales/create"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
-                                New Sale</a>
-                        </li>
-                    </ul>
-                </li>
+    <button type="button"
+        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+        aria-controls="dropdown-vehicle" data-collapse-toggle="dropdown-vehicle">
+        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M18 7c-1.1 0-2 .9-2 2v5c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2h1z"></path>
+        </svg>
+        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Vehicle Management</span>
+        <svg class="w-3 h-3 transition-transform" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="m1 1 4 4 4-4" />
+        </svg>
+    </button>
+    <ul id="dropdown-vehicle" class="hidden py-2 space-y-2">
+        <li>
+            <a href="/view_trucks"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View
+                TRUCK</a>
+        </li>
+        <li>
+            <a href="/drivers"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
+                Driver</a>
+        </li>
+        <li>
+            <a href="/drivertrucks"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Assign Truck
+                Driver</a>
+        </li>
+        <li>
+            <a href="/filter-usage"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">filter usage
+                </a>
+        </li>
+        <li>
+            <a href="/fuelusage"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Fuel usage
+                </a>
+        </li>
+        <li>
+            <a href="/mobile-usage"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mobil usage
+                </a>
+        </li>
+        <li>
+            <a href="/vehicles/reports"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Vehicle
+                Reports</a>
+        </li>
+        <li>
+            <a href="/expenditures"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Expenditures
+                </a>
+        </li>
+        <li>
+            <a href="/waybills"
+                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">waybill
+                </a>
+        </li>
+    </ul>
+</li>
+
 
 
 

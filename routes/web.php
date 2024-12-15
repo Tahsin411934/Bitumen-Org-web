@@ -13,8 +13,14 @@ use App\Http\Controllers\scaleSlipController;
 use App\Http\Controllers\InventoryLedgerController;
 use App\Http\Controllers\MEBscaleController;
 use App\Http\Controllers\DashboardController;
-
-
+use App\Http\Controllers\TruckController;
+use App\Http\Controllers\DriverController;
+use App\Http\Controllers\DriverTruckController;
+use App\Http\Controllers\FilterUSAGEController;
+use App\Http\Controllers\MobilUSAGEController;
+use App\Http\Controllers\FuelUSAGEController;
+use App\Http\Controllers\ExpenditureController;
+use App\Http\Controllers\WaybillController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -57,6 +63,20 @@ Route::get('/meb', [MEBscaleController::class, 'create']);
 Route::post('/meb-scale-slips', [MEBscaleController::class, 'store'])->name('meb.store');
 Route::get('/meb/print/{id}', [MEBscaleController::class, 'printMebInfo'])->name('meb.print');
 
+// vehicle management
+Route::get('view_trucks', [TruckController::class, 'index']);
+Route::post('/trucks/store', [TruckController::class, 'store'])->name('trucks.store');
+Route::put('/trucks', [TruckController::class, 'update'])->name('trucks.update');
+Route::delete('/trucks/{truck}', [TruckController::class, 'destroy'])->name('trucks.destroy');
+
+// driver
+Route::resource('drivers', DriverController::class);
+Route::resource('drivertrucks', DriverTruckController::class);
+Route::resource('filter-usage', FilterUSAGEController::class);
+Route::resource('mobile-usage', MobilUSAGEController::class);
+Route::resource('fuelusage', FuelUSAGEController::class);
+Route::resource('expenditures', ExpenditureController::class);
+Route::resource('waybills', WaybillController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

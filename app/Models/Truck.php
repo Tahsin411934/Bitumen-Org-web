@@ -26,7 +26,9 @@ class Truck extends Model
         'tier_count',
         'tier_size',
         'mileage',
+        'status',
         'fuel_type',
+        'docRenewDate',
     ];
 
     // Define the relationship with the Driver model
