@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Expenditure;
 use App\Models\Truck;
 use App\Models\Driver;
+use App\Models\ExpenseType;
 use Illuminate\Http\Request;
 
 class ExpenditureController extends Controller
@@ -13,9 +14,10 @@ class ExpenditureController extends Controller
     public function index()
     {
         $expenditures = Expenditure::all();
+        $expenseType = ExpenseType::all();
         $trucks = Truck::all();
         $drivers= Driver::all();
-        return view('expenditures.index', compact('expenditures','trucks','drivers'));
+        return view('expenditures.index', compact('expenditures','trucks','drivers','expenseType'));
     }
 
     // Show the form for creating a new expenditure
@@ -62,31 +64,36 @@ class ExpenditureController extends Controller
         return response()->json($expenditure);
     }
 
-    // Show the form for editing the specified expenditure
-    public function edit($id)
-    {
-        // This method can return a view, but for an API, you might not need this.
-    }
 
     // Update the specified expenditure in storage
     public function update(Request $request, $id)
-    {
+    { 
         // Validate incoming request
-        $request->validate([
-            'truckid' => 'required|integer',
-            'expendituretype' => 'required|string',
-            'description' => 'nullable|string',
-            'date' => 'required|date',
-            'amount' => 'required|numeric',
-            'driver' => 'nullable|string',
-            'paidto' => 'nullable|string',
-        ]);
-
+        try {
+      
+            $validated =  $request->validate([
+                'truckid' => 'required|integer',
+                     'expendituretype' => 'required|string',
+                     'description' => 'nullable|string',
+                     'date' => 'required|date',
+                     'amount' => 'required|numeric',
+                     'driver_id' => 'nullable|string',
+                     'paidto' => 'nullable|string',
+             ]);
+     
+    
+         
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            
+            dd($e->errors()); // This will show the validation error messages
+        }
+       
         // Find the expenditure and update it
         $expenditure = Expenditure::findOrFail($id);
         $expenditure->update($request->all());
 
-        return response()->json($expenditure);
+        return back();
     }
 
     // Remove the specified expenditure from storage
@@ -95,6 +102,6 @@ class ExpenditureController extends Controller
         $expenditure = Expenditure::findOrFail($id);
         $expenditure->delete();
 
-        return response()->json(['message' => 'Expenditure deleted successfully']);
+        return back();
     }
 }

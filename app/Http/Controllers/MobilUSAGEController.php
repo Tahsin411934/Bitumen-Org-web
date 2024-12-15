@@ -67,27 +67,33 @@ class MobilUSAGEController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MobileUsage $mobile_usage)
-    {
-        // Validate and update the resource
+    public function update(Request $request, $id)
+    {  
+        // Validate the incoming request data
         $validated = $request->validate([
-           'truckID' => 'required',
+            'truckID' => 'required',
             'changedate' => 'required|date',
         ]);
-
+    
+        // Find the record by ID and handle if not found
+        $filterUsage = MobilUSAGE::findOrFail($id); // Corrected: Use $id instead of 'id'
+    
+        // Update the record with validated data
         $filterUsage->update($validated);
-
-        return redirect()->route('mobile-usage.index')->with('success', 'Filter usage updated successfully!');
+    
+        // Redirect back with a success message
+        return back()->with('success', 'Filter usage updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MobileUsage $mobile_usage)
+    public function destroy( $id)
     {
-        // Delete the resource
+        $filterUsage = MobilUSAGE::findOrFail($id);
         $filterUsage->delete();
 
-        return redirect()->route('filter-usage.index')->with('success', 'Filter usage deleted successfully!');
+        return back()->with('success', 'Filter deleted successfully!');
     }
 }

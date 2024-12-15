@@ -21,6 +21,11 @@ use App\Http\Controllers\MobilUSAGEController;
 use App\Http\Controllers\FuelUSAGEController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\WaybillController;
+use App\Http\Controllers\ExpenseTypeController;
+use App\Http\Controllers\ChangeAlertSettingController;
+use App\Http\Controllers\ServiceTypeController;
+use App\Http\Controllers\ServiceHistoryController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -69,7 +74,7 @@ Route::post('/trucks/store', [TruckController::class, 'store'])->name('trucks.st
 Route::put('/trucks', [TruckController::class, 'update'])->name('trucks.update');
 Route::delete('/trucks/{truck}', [TruckController::class, 'destroy'])->name('trucks.destroy');
 
-// driver
+
 Route::resource('drivers', DriverController::class);
 Route::resource('drivertrucks', DriverTruckController::class);
 Route::resource('filter-usage', FilterUSAGEController::class);
@@ -77,6 +82,11 @@ Route::resource('mobile-usage', MobilUSAGEController::class);
 Route::resource('fuelusage', FuelUSAGEController::class);
 Route::resource('expenditures', ExpenditureController::class);
 Route::resource('waybills', WaybillController::class);
+Route::resource('expensetypes', ExpenseTypeController::class);
+Route::resource('alert-settings', ChangeAlertSettingController::class);
+Route::resource('service-type', ServiceTypeController::class);
+Route::resource('service-history', ServiceHistoryController::class);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

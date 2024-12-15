@@ -4,7 +4,8 @@
         aria-controls="sidebar-multi-level-sidebar" type="button"
         class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span class="sr-only">Open sidebar</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
             <path clip-rule="evenodd" fill-rule="evenodd"
                 d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
             </path>
@@ -15,16 +16,16 @@
     <aside id="sidebar-multi-level-sidebar"
         class="fixed  top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
-       
+
         <div class="h-full border-r border-gray-200 px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <div class="flex flex-col items-center px-4 ">
                 <!-- Sidebar content (e.g., links, logo) -->
-            
+
                 <!-- Logo -->
                 <a href="/dashboard" class="mb-6">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
-            
+
                 <!-- Search Bar -->
                 <fieldset class=" mb-5 mx-auto space-y-1 dark:text-gray-800">
                     <label for="Search" class="sr-only">Search</label> <!-- Use sr-only for screen reader access -->
@@ -32,20 +33,18 @@
                         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                             <button type="button" title="search" class="p-1 focus:outline-none focus:ring">
                                 <svg fill="currentColor" viewBox="0 0 512 512" class="w-4 h-4 dark:text-gray-800">
-                                    <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
+                                    <path
+                                        d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z">
+                                    </path>
                                 </svg>
                             </button>
                         </span>
-                        <input
-                            type="search"
-                            name="Search"
-                            placeholder="Search..."
-                            class="w-full sm:w-[95%] py-2 pl-10 text-sm rounded-md focus:outline-none dark:bg-gray-100 dark:text-gray-800 focus:dark:bg-gray-50 focus:dark:border-violet-600"
-                        >
+                        <input type="search" name="Search" placeholder="Search..."
+                            class="w-full sm:w-[95%] py-2 pl-10 text-sm rounded-md focus:outline-none dark:bg-gray-100 dark:text-gray-800 focus:dark:bg-gray-50 focus:dark:border-violet-600">
                     </div>
                 </fieldset>
             </div>
-            
+
             <ul class="space-y-2 font-medium">
 
                 <!-- Dashboard -->
@@ -155,7 +154,8 @@
                     <ul id="dropdown-purchase" class="hidden py-2 space-y-2">
                         <li>
                             <a href="/inventory-ledger"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventory Ledger</a>
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Inventory
+                                Ledger</a>
                         </li>
                         <li>
                             <a href="/inventories"
@@ -189,10 +189,10 @@
                         </svg>
 
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Orders</span>
-                        <svg class="w-3 h-3 transition-transform" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
                     <ul id="dropdown-orders" class="hidden py-2 space-y-2">
@@ -217,16 +217,19 @@
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-challan" data-collapse-toggle="dropdown-challan">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20 8h-2V7a5 5 0 0 0-10 0v1H6a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h3a3 3 0 0 0 6 0h4a3 3 0 0 0 6 0h1a1 1 0 0 0 1-1V10a2 2 0 0 0-2-2ZM9 7a3 3 0 0 1 6 0v1H9Zm3 12.5a1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 0 1-3 0ZM5 18v-6h14v6Z"/>
-                          </svg>
-                          
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20 8h-2V7a5 5 0 0 0-10 0v1H6a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h3a3 3 0 0 0 6 0h4a3 3 0 0 0 6 0h1a1 1 0 0 0 1-1V10a2 2 0 0 0-2-2ZM9 7a3 3 0 0 1 6 0v1H9Zm3 12.5a1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 0 1-3 0ZM5 18v-6h14v6Z" />
+                        </svg>
+
 
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Manage Challan</span>
-                        <svg class="w-3 h-3 transition-transform" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        <svg class="w-3 h-3 transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
                     <ul id="dropdown-challan" class="hidden py-2 space-y-2">
@@ -248,70 +251,70 @@
                     </ul>
                 </li>
 
-                <li>
-    <button type="button"
-        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-        aria-controls="dropdown-vehicle" data-collapse-toggle="dropdown-vehicle">
-        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-            <path
-                d="M18 7c-1.1 0-2 .9-2 2v5c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2h1z"></path>
-        </svg>
-        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Vehicle Management</span>
-        <svg class="w-3 h-3 transition-transform" aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" d="m1 1 4 4 4-4" />
-        </svg>
-    </button>
-    <ul id="dropdown-vehicle" class="hidden py-2 space-y-2">
-        <li>
-            <a href="/view_trucks"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View
-                TRUCK</a>
-        </li>
-        <li>
-            <a href="/drivers"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add
-                Driver</a>
-        </li>
-        <li>
-            <a href="/drivertrucks"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Assign Truck
-                Driver</a>
-        </li>
-        <li>
-            <a href="/filter-usage"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">filter usage
-                </a>
-        </li>
-        <li>
-            <a href="/fuelusage"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Fuel usage
-                </a>
-        </li>
-        <li>
-            <a href="/mobile-usage"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mobil usage
-                </a>
-        </li>
-        <li>
-            <a href="/vehicles/reports"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Vehicle
-                Reports</a>
-        </li>
-        <li>
-            <a href="/expenditures"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Expenditures
-                </a>
-        </li>
-        <li>
-            <a href="/waybills"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">waybill
-                </a>
-        </li>
-    </ul>
-</li>
+                
+    <!-- Vehicle Management Dropdown -->
+    <li>
+        <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            aria-controls="dropdown-vehicle-management" data-collapse-toggle="dropdown-vehicle-management">
+            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 7c-1.1 0-2 .9-2 2v5c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2h-1v2h-2v-2h-1c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2h-1v-2H9v2H8c-1.1 0-2-.9-2-2V9c0-1.1-.9-2-2-2h1V5h14v2h1z"></path>
+            </svg>
+            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Vehicle Management</span>
+            <svg class="w-3 h-3 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
+            </svg>
+        </button>
+        <ul id="dropdown-vehicle-management" class="hidden py-2 space-y-2">
+            <li><a href="/view_trucks" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">View Trucks</a></li>
+            <li><a href="/drivers" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Add Driver</a></li>
+            <li><a href="/drivertrucks" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Assign Truck Driver</a></li>
+        </ul>
+    </li>
+
+    <!-- Operations Dropdown -->
+    <li>
+        <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            aria-controls="dropdown-operations" data-collapse-toggle="dropdown-operations">
+            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path>
+            </svg>
+            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Operations</span>
+            <svg class="w-3 h-3 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
+            </svg>
+        </button>
+        <ul id="dropdown-operations" class="hidden py-2 space-y-2">
+            <li><a href="/filter-usage" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Filter Usage</a></li>
+            <li><a href="/fuelusage" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Fuel Usage</a></li>
+            <li><a href="/mobile-usage" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mobile Usage</a></li>
+            <li><a href="/waybills" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Waybills</a></li>
+        </ul>
+    </li>
+
+    <!-- Reports & Settings Dropdown -->
+    <li>
+        <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            aria-controls="dropdown-reports-settings" data-collapse-toggle="dropdown-reports-settings">
+            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path>
+            </svg>
+            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Reports & Settings</span>
+            <svg class="w-3 h-3 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
+            </svg>
+        </button>
+        <ul id="dropdown-reports-settings" class="hidden py-2 space-y-2">
+            <li><a href="/vehicles/reports" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Vehicle Reports</a></li>
+            <li><a href="/expensetypes" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Expenditure Types</a></li>
+            <li><a href="/expenditures" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Expenditures</a></li>
+            <li><a href="/service-type" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Service Types</a></li>
+            <li><a href="/service-history" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Service History</a></li>
+            <li><a href="/alert-settings" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Alert Settings</a></li>
+        </ul>
+    </li>
+
+
 
 
 
@@ -322,19 +325,19 @@
     </aside>
 
     <script>
-        document.querySelectorAll('[data-collapse-toggle]').forEach((button) => {
-            button.addEventListener('click', (e) => {
-                const targetId = button.getAttribute('aria-controls');
-                const targetEl = document.getElementById(targetId);
+    document.querySelectorAll('[data-collapse-toggle]').forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const targetId = button.getAttribute('aria-controls');
+            const targetEl = document.getElementById(targetId);
 
-                if (targetEl.classList.contains('hidden')) {
-                    targetEl.classList.remove('hidden');
-                    button.setAttribute('aria-expanded', 'true');
-                } else {
-                    targetEl.classList.add('hidden');
-                    button.setAttribute('aria-expanded', 'false');
-                }
-            });
+            if (targetEl.classList.contains('hidden')) {
+                targetEl.classList.remove('hidden');
+                button.setAttribute('aria-expanded', 'true');
+            } else {
+                targetEl.classList.add('hidden');
+                button.setAttribute('aria-expanded', 'false');
+            }
         });
+    });
     </script>
 </div>

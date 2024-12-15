@@ -68,7 +68,7 @@ class FuelUSAGEController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(fuelUSAGE $fuelUSAGE)
+    public function show(fuelUSAGE $id)
     {
         // Show the specific fuel usage record
         return view('fuelusage.show', compact('fuelUSAGE'));
@@ -86,32 +86,40 @@ class FuelUSAGEController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, fuelUSAGE $fuelUSAGE)
-    {
+    public function update(Request $request, $id)
+    { 
         // Validate the incoming data
-        $validated = $request->validate([
-            'truckid' => 'required',
-            'date' => 'required|date',
-            'quantity' => 'required|numeric',
-            'fillingstation' => 'required',
-            'driver' => 'required',
-            'meterREADING' => 'required|numeric',
-        ]);
-
-        // Update the fuel usage record with the validated data
-        $fuelUSAGE->update($validated);
-
+        try {
+            $validated = $request->validate([
+                'truckid' => 'required',
+                'date' => 'required|date',
+                'quantity' => 'required|numeric',
+                'fillingstation' => 'required',
+                'driver' => 'required',
+                'meterREADING' => 'required|numeric',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors()); // This will show the validation error messages
+        }
+    
+        // Find the fuel usage record by ID
+        $fuelUsage = FuelUsage::findOrFail($id); 
+    
+        // Update the record with the validated data
+        $fuelUsage->update($validated);
+    
         // Redirect to the index page with a success message
         return redirect()->route('fuelusage.index')->with('success', 'Fuel usage updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(fuelUSAGE $fuelUSAGE)
+    public function destroy($id)
     {
-        // Delete the fuel usage record
-        $fuelUSAGE->delete();
+        $fuelUsage = FuelUsage::findOrFail($id); 
+        $fuelUsage->delete();
 
         // Redirect to the index page with a success message
         return redirect()->route('fuelusage.index')->with('success', 'Fuel usage deleted successfully!');
