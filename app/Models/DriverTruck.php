@@ -9,7 +9,7 @@ class DriverTruck extends Model
 {
     use HasFactory;
 
-    protected $table = 'drivertruck';  // Ensure this matches the table name in the database
+    protected $table = 'drivertruck'; 
     public $timestamps = false;  
     protected $fillable = [
         'truck_id',

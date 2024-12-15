@@ -91,18 +91,29 @@ class DriverTruckController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'truck_id' => 'required|exists:trucks,truck_id',
-            'driver_id' => 'required|exists:drivers,driver_id',
-            'startdate' => 'required|date',
-            'enddate' => 'required|date|after:startdate',
+    { try {
+      
+        $validated = $request->validate([
+            'truck_id' => 'required',
+            'driver_id' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:startdate',
         ]);
 
-        $driverTruck = DriverTruck::findOrFail($id);
+        
+
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        
+        dd($e->errors()); // This will show the validation error messages
+    }
+        
+
+    $driverTruck = DriverTruck::findOrFail($id);
+
+  
         $driverTruck->update($request->all());
 
-        return redirect()->route('drivertrucks.index')->with('success', 'Driver and truck assignment updated successfully!');
+        return redirect()->back()->with('success', 'Driver and truck assignment updated successfully!');
     }
 
     /**
