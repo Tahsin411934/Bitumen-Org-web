@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Truck;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 
 class TruckController extends Controller
@@ -18,10 +19,19 @@ class TruckController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function truckProfile($truck_id)
     {
-        //
+        // Use the variable $truck_id in the where clause
+        $truck = Truck::with(['services', 'filter', 'fuel', 'waybills'])
+                      ->where('truck_id', $truck_id) // Use the variable, not the string
+                      ->first(); // Assuming you want to retrieve a single truck by ID
+        $trucks= Truck::all();
+        $serviceTypes = ServiceType::all();
+        dd($truck);
+        // Return the view with the truck data
+        return view('truckProfile.truckProfile', compact('truck','trucks', 'serviceTypes'));
     }
+    
 
     /**
      * Store a newly created resource in storage.

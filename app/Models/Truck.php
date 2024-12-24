@@ -36,4 +36,20 @@ class Truck extends Model
     {
         return $this->hasMany(Driver::class, 'truck_id', 'truck_id');
     }
+    public function services()
+    {
+        return $this->hasMany(ServiceHistory::class, 'truck_id', 'truck_id');
+    }
+    public function filter()
+    {
+        return $this->hasMany(FilterUSAGE::class, 'truckID', 'truck_id');
+    }
+    public function fuel()
+    {
+        return $this->hasMany(fuelUSAGE::class, 'truckID', 'truck_id');
+    }
+    public function waybills()
+    {
+        return $this->hasMany(Waybill::class, 'truckID', 'truck_id');
+    }
 }

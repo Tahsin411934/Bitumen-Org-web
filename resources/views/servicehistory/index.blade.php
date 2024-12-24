@@ -25,38 +25,42 @@
                 <tbody>
                     @foreach ($serviceHistories as $serviceHistory)
                     <tr>
-                        <form action="{{ route('service-history.update', $serviceHistory->id) }}" method="POST" class="update-form">
+                        <form action="{{ route('service-history.update', $serviceHistory->id) }}" method="POST"
+                            class="update-form">
                             @csrf
                             @method('PUT')
                             <td>
-                                <input type="text" name="id" value="{{ $serviceHistory->id }}" 
+                                <input type="text" name="id" value="{{ $serviceHistory->id }}"
                                     class="w-full border border-gray-300 rounded px-2 py-1" disabled />
                             </td>
                             <td>
-                            <select name="truck_id" class="w-full border border-gray-300 rounded px-2 py-1" disabled>
-    @foreach ($trucks as $truck)
-    <option value="{{ $truck->truck_id }}" {{ $serviceHistory->truck_id == $truck->truck_id ? 'selected' : '' }}>
-        {{ $truck->reg_no }}
-    </option>
-    @endforeach
-</select>
+                                <select name="truck_id" class="w-full border border-gray-300 rounded px-2 py-1"
+                                    disabled>
+                                    @foreach ($trucks as $truck)
+                                    <option value="{{ $truck->truck_id }}"
+                                        {{ $serviceHistory->truck_id == $truck->truck_id ? 'selected' : '' }}>
+                                        {{ $truck->reg_no }}
+                                    </option>
+                                    @endforeach
+                                </select>
 
                             </td>
                             <td>
-                                <input type="date" name="date" value="{{ $serviceHistory->date }}" 
+                                <input type="date" name="date" value="{{ $serviceHistory->date }}"
                                     class="w-full border border-gray-300 rounded px-2 py-1" disabled />
                             </td>
                             <td>
                                 <select name="service" class="w-full border border-gray-300 rounded px-2 py-1" disabled>
                                     @foreach ($serviceTypes as $serviceType)
-                                    <option value="{{ $serviceType->id }}" {{ $serviceHistory->service == $serviceType->id ? 'selected' : '' }}>
+                                    <option value="{{ $serviceType->id }}"
+                                        {{ $serviceHistory->service == $serviceType->id ? 'selected' : '' }}>
                                         {{ $serviceType->servicename }}
                                     </option>
                                     @endforeach
                                 </select>
                             </td>
                             <td>
-                                <input type="number" name="cost" value="{{ $serviceHistory->cost }}" 
+                                <input type="number" name="cost" value="{{ $serviceHistory->cost }}"
                                     class="w-full border border-gray-300 rounded px-2 py-1" disabled />
                             </td>
                             <td class="flex space-x-2">
@@ -64,14 +68,15 @@
                                     class="bg-blue-900 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
                                 <button type="submit"
                                     class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hidden save-button">Save</button>
-                            </form>
-                            <form action="{{ route('service-history.destroy', $serviceHistory->id) }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                            </td>
+                        </form>
+                        <form action="{{ route('service-history.destroy', $serviceHistory->id) }}" method="POST"
+                            class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -102,23 +107,20 @@
                 <form action="{{ route('service-history.store') }}" method="POST" class="p-6 space-y-6">
                     @csrf
                     <div class="grid gap-6">
-                        <select name="truck_id" 
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
+                        <select name="truck_id" class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
                             <option value="" disabled selected>Select Truck</option>
                             @foreach ($trucks as $truck)
                             <option value="{{ $truck->truck_id }}">{{ $truck->reg_no }}</option>
                             @endforeach
                         </select>
-                        <input type="date" name="date" 
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
-                        <select name="service" 
-                            class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
+                        <input type="date" name="date" class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
+                        <select name="service" class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
                             <option value="" disabled selected>Select Service Type</option>
                             @foreach ($serviceTypes as $serviceType)
                             <option value="{{ $serviceType->id }}">{{ $serviceType->servicename }}</option>
                             @endforeach
                         </select>
-                        <input type="number" name="cost" placeholder="Cost" 
+                        <input type="number" name="cost" placeholder="Cost"
                             class="p-3 border border-gray-300 rounded-lg shadow-sm w-full">
                     </div>
                     <div class="flex justify-center">
@@ -133,24 +135,25 @@
 </x-app-layout>
 
 <script>
-    function enableEdit(button) {
-        const row = button.closest('tr');
-        row.querySelectorAll('textarea, select, input').forEach(field => field.disabled = false); // Enable fields
-        button.classList.add('hidden'); // Hide the Edit button
-        row.querySelector('.save-button').classList.remove('hidden'); // Show the Save button
-    }
+function enableEdit(button) {
+    const row = button.closest('tr');
+    row.querySelectorAll('textarea, select, input').forEach(field => field.disabled = false); // Enable fields
+    button.classList.add('hidden'); // Hide the Edit button
+    row.querySelector('.save-button').classList.remove('hidden'); // Show the Save button
+}
 </script>
 
 <script>
-    @if (session('success'))
-        Swal.fire({
-            title: 'Success!',
-            text: '{{ session('success') }}',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            customClass: {
-                confirmButton: 'bg-blue-800 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300'
-            }
-        });
-    @endif
+@if(session('success'))
+Swal.fire({
+    title: 'Success!',
+    text: '{{ session('
+    success ') }}',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    customClass: {
+        confirmButton: 'bg-blue-800 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300'
+    }
+});
+@endif
 </script>

@@ -25,6 +25,7 @@ use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\ChangeAlertSettingController;
 use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\ServiceHistoryController;
+use App\Http\Controllers\RCController;
 
 
 Route::get('/', function () {
@@ -64,12 +65,15 @@ Route::get('/challanCreate', [ChallanController::class, 'create']);
 Route::get('/challan-order-create/{trxID}', [OrderController::class, 'challanOrderCreate']);
 
 // scale slip
-Route::get('/meb', [MEBscaleController::class, 'create']);
+Route::get('/meb', [MEBscaleController::class, 'create'])->name('scaleSlipMEB.create');
 Route::post('/meb-scale-slips', [MEBscaleController::class, 'store'])->name('meb.store');
 Route::get('/meb/print/{id}', [MEBscaleController::class, 'printMebInfo'])->name('meb.print');
 
+Route::resource('rc', RCController::class);
+
 // vehicle management
 Route::get('view_trucks', [TruckController::class, 'index']);
+Route::get('view_trucks/{truck_id}', [TruckController::class, 'truckProfile']);
 Route::post('/trucks/store', [TruckController::class, 'store'])->name('trucks.store');
 Route::put('/trucks', [TruckController::class, 'update'])->name('trucks.update');
 Route::delete('/trucks/{truck}', [TruckController::class, 'destroy'])->name('trucks.destroy');

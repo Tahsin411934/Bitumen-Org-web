@@ -38,33 +38,47 @@ class DriverTruckController extends Controller
     public function store(Request $request)
     {
         try {
-      
             $validated = $request->validate([
                 'truck_id' => 'required|numeric',
                 'driver_id' => 'required|numeric',
                 'start_date' => 'required|date',
-                'end_date' => 'required|date|after:startdate',
+                'end_date' => 'required|date|after:start_date',
             ]);
-
-        
-    
         } catch (\Illuminate\Validation\ValidationException $e) {
-            
-            dd($e->errors()); // This will show the validation error messages
+            dd($e->errors()); // Show validation error messages
         }
-        
+    
+        // Check for conflicting assignments for the truck or driver
+        $conflict = DriverTruck::where(function ($query) use ($request) {
+            $query->where('truck_id', $request->truck_id)
+                  ->orWhere('driver_id', $request->driver_id);
+        })
+        ->where(function ($query) use ($request) {
+            $query->whereBetween('start_date', [$request->start_date, $request->end_date])
+                  ->orWhereBetween('end_date', [$request->start_date, $request->end_date])
+                  ->orWhere(function ($query) use ($request) {
+                      $query->where('start_date', '<=', $request->start_date)
+                            ->where('end_date', '>=', $request->end_date);
+                  });
+        })
+        ->exists();
+    
+        if ($conflict) {
+            return redirect()->back()->with('conflict', 'This truck or driver is already assigned during the selected period.');
 
+        }
+    
+        // Create a new assignment
         DriverTruck::create([
             'truck_id' => $request->truck_id,
             'driver_id' => $request->driver_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
         ]);
-        
-
+    
         return redirect()->route('drivertrucks.index')->with('success', 'Driver and truck assignment added successfully!');
     }
-
+    
     /**
      * Display the specified resource.
      */

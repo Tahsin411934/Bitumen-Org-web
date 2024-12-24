@@ -36,23 +36,38 @@
                             {{ number_format($order->orderDetails->sum(fn($detail) => $detail->quantity * $detail->price), 2) }} 
                         </td>
                         <td class="px-4 py-2 border">
-                            <div class="flex flex-col space-y-2">
-                                <a href="" 
-                                   class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">View Details</a>
-                                
-                                <a href="" 
-                                   class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">Invoice</a>
-                                
-                                <a href="" 
-                                   class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">Challan</a>
-                                
-                                   <a href="{{ route('scaleSlip.create', ['order_no' => $order->order_no]) }}" 
-                                    class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">
-                                     Scale Slip
-                                 </a>
-                                 
-                            </div>
-                        </td>
+    <div class="flex flex-col space-y-2">
+        <a href="#" 
+           class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">View Details</a>
+        
+        <a href="#" 
+           class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">Invoice</a>
+        
+        <a href="#" 
+           class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center">Challan</a>
+        
+        <div class="relative">
+            <!-- Scale Slip Button -->
+            <button 
+                onclick="toggleDropdown()" 
+                class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded text-center w-full">
+                Scale Slip
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="scaleSlipDropdown" 
+                 class="hidden mt-2 bg-white border rounded shadow-lg absolute z-10 w-full">
+                <a href="{{ route('scaleSlipMEB.create') }}" 
+                   class="block px-4 py-2 hover:bg-gray-100">MEB</a>
+                <a href="{{ route('scaleSlip.create', ['order_no' => $order->order_no, 'corporation' => 'EASTERN']) }}" 
+                   class="block px-4 py-2 hover:bg-gray-100">EASTERN</a>
+                <a href="{{ route('scaleSlip.create', ['order_no' => $order->order_no, 'corporation' => 'RAHMAN_CORPORATION']) }}" 
+                   class="block px-4 py-2 hover:bg-gray-100">RAHMAN CORPORATION</a>
+            </div>
+        </div>
+    </div>
+</td>
+
                         
                     </tr>
                 @endforeach
@@ -60,3 +75,10 @@
         </table>
     </div>
 </x-app-layout>
+<SCript>
+    function toggleDropdown() {
+    const dropdown = document.getElementById('scaleSlipDropdown');
+    dropdown.classList.toggle('hidden');
+}
+
+</SCript>

@@ -25,12 +25,16 @@
                     <td class="border border-black p-2">{{ $meb_infos->customer_name }}</td>
                 </tr>
                 <tr>
+                    <td class="border border-black p-2 font-semibold">VEHICLE</td>
+                    <td class="border border-black p-2">{{ $meb_infos->vehicle }}</td>
+                </tr>
+                <tr>
                     <td class="border border-black p-2 font-semibold">Goods</td>
                     <td class="border border-black p-2">{{ $meb_infos->goods }}</td>
                 </tr>
                 <tr>
                     <td class="border border-black p-2 font-semibold">Gross Weight</td>
-                    <td class="border border-black p-2">{{ $meb_infos->gross_weight_amount }} {{ $meb_infos->gross_weight_uom }}</td>
+                    <td class="border border-black p-2"><span class="border-r border-gray-900  divide-y divide-blue-200">{{ $meb_infos->gross_weight_time }}</span> <hr> {{ $meb_infos->gross_weight_amount }} {{ $meb_infos->gross_weight_uom }}</td>
                 </tr>
                 <tr>
                     <td class="border border-black p-2 font-semibold">Tare Weight</td>

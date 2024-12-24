@@ -8,6 +8,19 @@
                 Assign Driver and Truck
             </button>
         </div>
+        @if (session('conflict'))
+        <script>
+        Swal.fire({
+            title: 'Conflict Detected!',
+            text: @json(session('conflict')), // Properly escape the conflict message
+            icon: 'warning',
+            confirmButtonText: 'OK',
+            customClass: {
+                confirmButton: 'swal2-confirm'
+            }
+        });
+        </script>
+        @endif
 
         <div class="bg-white shadow-lg rounded-lg p-8 w-full overflow-x-auto">
             <table id="example" class="display w-full">
@@ -119,6 +132,7 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>
 
 <script>

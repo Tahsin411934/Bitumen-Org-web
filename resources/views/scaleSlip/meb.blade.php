@@ -15,6 +15,7 @@
             <!-- Row 2 -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <input type="text" name="goods" placeholder="Goods" class="border border-gray-300 rounded-lg p-2 w-full">
+                <input type="text" name="vehicle" placeholder="vehicle" class="border border-gray-300 rounded-lg p-2 w-full">
                 <div class="flex gap-2 items-center">
                     <input type="time" name="gross_weight_time" placeholder="Time" class="border border-gray-300 rounded-lg p-2 w-full">
                     <input type="number" step="0.001" name="gross_weight_amount" placeholder="Amount" class="border border-gray-300 rounded-lg p-2 w-full">

@@ -18,6 +18,7 @@ protected $timespan= false;
         'date_time',
         'customer_name',
         'goods',
+        'vehicle',
         'gross_weight_time',
         'gross_weight_amount',
         'gross_weight_uom',
